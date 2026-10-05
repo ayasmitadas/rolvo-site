@@ -1,9 +1,9 @@
 import Eyebrow from "../Eyebrow";
 
 const PROOF_POINTS = [
-  "Versioned metadata packages with diff history",
-  "Automated test coverage and linting reports",
-  "One-click export to Dev Hub or VS Code",
+  "Versioned packages, with diff history.",
+  "Tests written and run, not promised.",
+  "Export to Dev Hub or VS Code.",
 ];
 
 const AGENTS: { name: string; tone: "violet" | "brand" }[] = [
@@ -13,10 +13,10 @@ const AGENTS: { name: string; tone: "violet" | "brand" }[] = [
 ];
 
 const STATS = [
-  { value: "6", label: "Core delivery stages covered" },
-  { value: "7+", label: "Role-based specialists available" },
-  { value: "100%", label: "Audit-trail traceability" },
-  { value: "<5min", label: "Time from requirement to package" },
+  { value: "Six", label: "Delivery stages, every task" },
+  { value: "Five", label: "Specialists, one per discipline" },
+  { value: "Seven", label: "Preset skills. Write your own, free." },
+  { value: "Zero", label: "Autonomous deployments" },
 ];
 
 export default function ProductProof() {
@@ -36,8 +36,9 @@ export default function ProductProof() {
             </h2>
             <p className="max-w-[560px] pt-[15.25px] text-[18px] leading-[29.25px] text-ink-soft">
               Rolvo surfaces the output alongside the reasoning. Every task
-              returns a structured package with artifacts, tests and a clear
-              audit trail you can hand to a reviewer.
+              returns a structured package — artifacts, tests, and the
+              decisions behind them — that you can hand to a reviewer and read
+              line by line.
             </p>
             <ul className="flex flex-col gap-4 pt-4">
               {PROOF_POINTS.map((point) => (
@@ -72,17 +73,19 @@ export default function ProductProof() {
             />
             <figure className="relative m-0 overflow-hidden rounded-[12px] border border-ink/[0.06] bg-white/70 shadow-[0_4px_24px_0_rgba(17,17,17,0.04)] backdrop-blur-[10px]">
               <figcaption className="sr-only">
-                Rolvo console showing a task with its assigned agents, test
-                coverage and lint score.
+                Example output from the Rolvo console: a task with its assigned
+                agents, and illustrative coverage and lint score values.
               </figcaption>
 
-              <div
-                aria-hidden
-                className="flex h-8 items-center gap-2 border-b border-black/[0.05] bg-black/[0.03] px-4"
-              >
-                <span className="size-[10px] rounded-full bg-[rgba(248,113,113,0.6)]" />
-                <span className="size-[10px] rounded-full bg-[rgba(250,204,21,0.6)]" />
-                <span className="size-[10px] rounded-full bg-[rgba(74,222,128,0.6)]" />
+              <div className="flex h-8 items-center gap-2 border-b border-black/[0.05] bg-black/[0.03] px-4">
+                <span aria-hidden className="flex items-center gap-2">
+                  <span className="size-[10px] rounded-full bg-[rgba(248,113,113,0.6)]" />
+                  <span className="size-[10px] rounded-full bg-[rgba(250,204,21,0.6)]" />
+                  <span className="size-[10px] rounded-full bg-[rgba(74,222,128,0.6)]" />
+                </span>
+                <span className="ml-2 text-[11px] font-bold uppercase leading-[16.5px] tracking-[1.1px] text-ink-muted">
+                  Example output
+                </span>
               </div>
 
               <div className="grid grid-cols-2 gap-4 p-6">
@@ -97,7 +100,7 @@ export default function ProductProof() {
                         className={`rounded-[4px] px-3 py-1 text-[12px] font-bold leading-4 ${
                           agent.tone === "violet"
                             ? "bg-violet/10 text-violet"
-                            : "bg-brand/10 text-brand"
+                            : "bg-brand/10 text-brand-text"
                         }`}
                       >
                         {agent.name}

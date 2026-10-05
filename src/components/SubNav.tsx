@@ -37,9 +37,9 @@ export default function SubNav() {
 
         <Link
           href="#launch"
-          className="rounded-[6px] bg-brand px-5 py-2 text-[13px] font-bold leading-[19.5px] text-white transition-opacity hover:opacity-90"
+          className="rounded-[6px] bg-brand-text px-5 py-2 text-[13px] font-bold leading-[19.5px] text-white transition-opacity hover:opacity-90"
         >
-          Launch Console
+          Get started free
         </Link>
       </nav>
     </header>

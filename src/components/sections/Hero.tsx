@@ -66,40 +66,36 @@ export default function Hero() {
             data-node-id="5:2553"
             className="max-w-[576px] text-[17px] font-medium leading-[28px] text-ink-soft sm:text-[20px] sm:leading-[32.5px]"
           >
-            Assign Salesforce work to role-based delivery agents. Receive a
-            compiled, validated and packaged unit of work—ready for review,
-            sandbox or production.
+            Assign the work. Five specialists plan, build, test and package it.
+            You bring your own model — we never charge for tokens.
+          </p>
+
+          <p className="text-[16px] font-bold leading-[26px] text-ink">
+            A delivery team that ships. Not a chatbot that advises.
           </p>
 
           <div className="flex flex-wrap items-stretch gap-4 pt-[9.3px]">
             <Link
               href="#launch"
-              className="rounded-[6px] bg-brand px-8 py-4 text-[16px] font-bold leading-6 text-white shadow-[0_10px_15px_rgba(255,90,0,0.25)] transition-opacity hover:opacity-90"
+              className="group inline-flex items-center gap-2 rounded-[6px] bg-brand-text px-8 py-4 text-[16px] font-bold leading-6 text-white shadow-[0_10px_15px_rgba(196,58,0,0.25)] transition-opacity hover:opacity-90"
             >
-              Launch Console
+              Get started free
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/assets/icon-arrow-right.svg"
+                alt=""
+                width={13}
+                height={14}
+                className="transition-transform group-hover:translate-x-0.5"
+              />
             </Link>
             <Link
-              href="#how-it-works"
+              href="#contact"
               className="rounded-[6px] border border-ink/[0.06] bg-white/70 px-[33px] py-[17px] text-[16px] font-bold leading-6 text-ink shadow-[0_4px_24px_0_rgba(17,17,17,0.04)] backdrop-blur-[10px] transition-colors hover:bg-white"
             >
-              See how a task ships
+              Book a demo
             </Link>
           </div>
-
-          <Link
-            href="#contact"
-            className="group inline-flex items-center gap-1 text-[14px] leading-5 text-ink-muted transition-colors hover:text-ink"
-          >
-            Book a deep dive
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/assets/icon-arrow-right.svg"
-              alt=""
-              width={13}
-              height={14}
-              className="transition-transform group-hover:translate-x-0.5"
-            />
-          </Link>
         </div>
 
         {/* ── right column: console ─────────────────────── */}

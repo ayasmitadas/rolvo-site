@@ -64,7 +64,7 @@ export default function UseCase() {
                   className={`rounded-[4px] px-3 py-1 text-[12px] font-bold leading-4 ${
                     agent.tone === "violet"
                       ? "bg-violet/10 text-violet"
-                      : "bg-brand/10 text-brand"
+                      : "bg-brand/10 text-brand-text"
                   }`}
                 >
                   {agent.name}

@@ -96,7 +96,7 @@ export default function HowItWorks() {
                     height={24}
                     className="text-ink"
                   />
-                  <span className="absolute -right-3 -top-3 grid size-8 place-items-center rounded-full bg-brand text-[10px] font-bold leading-[15px] text-white">
+                  <span className="absolute -right-3 -top-3 grid size-8 place-items-center rounded-full bg-brand-text text-[10px] font-bold leading-[15px] text-white">
                     {step.n}
                   </span>
                 </span>

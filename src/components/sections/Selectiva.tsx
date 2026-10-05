@@ -11,28 +11,28 @@ type Pillar = {
 
 const PILLARS: Pillar[] = [
   {
-    id: "handoff",
-    icon: "/assets/selectiva-handoff.svg",
-    iconWidth: 45,
-    iconHeight: 36,
-    title: "Seamless Handoff",
-    body: "Move from AI-assisted delivery to Selectiva's expert services without losing context or metadata history.",
-  },
-  {
-    id: "expert-led",
+    id: "delivery-practice",
     icon: "/assets/selectiva-chip.svg",
     iconWidth: 36,
     iconHeight: 36,
-    title: "Expert-Led AI",
-    body: "Our specialist agents are built on Selectiva's proprietary Salesforce delivery methodology and playbooks.",
+    title: "Delivery practice, written down",
+    body: "Rolvo's six stages follow the way a delivery team actually works: read the request, design it, build it, test it, package it, approve it. The method came off real projects.",
   },
   {
-    id: "enterprise-trust",
-    icon: "/assets/selectiva-badge.svg",
+    id: "code-stays-yours",
+    icon: "/assets/selectiva-private.svg",
     iconWidth: 36,
     iconHeight: 36,
-    title: "Enterprise Trust",
-    body: "Backed by a global delivery center with certified Salesforce experts supervising every automated unit of work.",
+    title: "Your code stays yours",
+    body: "Selectiva supplies the product and nothing more. We do not see your org, your metadata or the code the agents write. Your work is never routed to us for review.",
+  },
+  {
+    id: "your-conventions",
+    icon: "/assets/selectiva-skill-file.svg",
+    iconWidth: 36,
+    iconHeight: 36,
+    title: "Your conventions win",
+    body: "Seven skill presets ship with Rolvo. Replace any of them with your own — your coding standards, your deployment rules, your naming. Writing your own costs nothing.",
   },
 ];
 
@@ -55,13 +55,13 @@ export default function Selectiva() {
         <Eyebrow>Built by Selectiva</Eyebrow>
 
         <h2 className="max-w-[960px] text-center text-[32px] font-extrabold leading-[1.06] tracking-[-1.2px] text-ink sm:text-[48px] sm:tracking-[-1.9px] lg:text-[72px] lg:leading-[64.8px] lg:tracking-[-2.88px]">
-          One platform. More possibilities.
+          Built by implementers. Your code stays yours.
         </h2>
 
         <p className="max-w-[672px] pt-8 text-center text-[18px] leading-[29.25px] text-ink-soft lg:pt-[48.25px]">
-          Rolvo brings Selectiva&apos;s Salesforce delivery experience into a
-          coordinated system of specialist AI agents. We combine decades of
-          implementation expertise with the speed of AI.
+          Selectiva is a Salesforce partner. We have delivered implementations
+          for real organizations, and Rolvo is that delivery practice turned into
+          software. We supply the product. We do not work inside your org.
         </p>
 
         <ul className="grid w-full max-w-[1024px] gap-8 pt-10 sm:grid-cols-2 lg:grid-cols-3 lg:pt-[49px]">

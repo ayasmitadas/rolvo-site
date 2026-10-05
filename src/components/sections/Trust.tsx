@@ -7,32 +7,42 @@ type Pillar = {
   iconHeight: number;
   title: string;
   body: string;
+  tag?: string;
 };
 
 const PILLARS: Pillar[] = [
   {
-    id: "approval-gates",
+    id: "approval-gate",
     icon: "/assets/trust-approval-gates.svg",
     iconWidth: 16,
     iconHeight: 16,
-    title: "Approval Gates",
-    body: "Configurable checkpoints before any artifact reaches a sandbox.",
+    title: "The approval gate",
+    body: "Nothing reaches production until a person approves it. The agents prepare the work and hand it back. You decide whether it ships.",
   },
   {
-    id: "audit-trail",
-    icon: "/assets/trust-audit-trail.svg",
+    id: "read-only-skill",
+    icon: "/assets/trust-read-only.svg",
     iconWidth: 16,
     iconHeight: 16,
-    title: "Full Audit Trail",
-    body: "Every decision, edit and handoff is logged and searchable.",
+    title: "Read-only when you say so",
+    body: "Attach the Read-Only Access skill and an agent can inspect and query your org — nothing more. It cannot write, deploy or edit. Not a promise we make. A constraint you attach.",
   },
   {
-    id: "enterprise-security",
+    id: "your-model",
+    icon: "/assets/trust-key.svg",
+    iconWidth: 16,
+    iconHeight: 16,
+    title: "Your model, your key",
+    body: "Rolvo runs on the language model you connect, under your own API key. Your provider bills you for what you use. We never bill you for tokens.",
+  },
+  {
+    id: "directory-controls",
     icon: "/assets/trust-lock.svg",
     iconWidth: 14,
     iconHeight: 16,
-    title: "Enterprise Security",
-    body: "SSO, role-based access and data residency controls out of the box.",
+    title: "Directory controls and audit logs",
+    body: "Single sign-on, SCIM provisioning for joiners and leavers, and audit log export. Available on the Enterprise plan.",
+    tag: "Enterprise",
   },
 ];
 
@@ -45,16 +55,15 @@ export default function Trust() {
     >
       <div className="mx-auto grid max-w-[1440px] items-center gap-14 lg:grid-cols-2 lg:gap-16">
         <div className="flex flex-col gap-4">
-          <Eyebrow>Trust &amp; governance</Eyebrow>
+          <Eyebrow>Control &amp; governance</Eyebrow>
 
           <h2 className="max-w-[520px] text-[32px] font-bold leading-[1.08] text-ink sm:text-[40px] lg:text-[48px] lg:leading-[48px]">
-            Built for review before release.
+            Review before release, not after.
           </h2>
 
           <p className="max-w-[560px] pt-[15.25px] text-[18px] leading-[29.25px] text-ink-soft">
-            Rolvo never deploys autonomously. Every output passes through human
-            review points, approval gates and a full audit trail so your team
-            stays in control.
+            Rolvo does not deploy on its own. You hold two separate levers: what
+            an agent is allowed to do, and whether its work ships at all.
           </p>
 
           <ul className="flex flex-col gap-6 pt-6">
@@ -70,9 +79,16 @@ export default function Trust() {
                   />
                 </span>
                 <div className="flex flex-col gap-1">
-                  <h3 className="text-[16px] font-bold leading-6 text-ink">
-                    {pillar.title}
-                  </h3>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="text-[16px] font-bold leading-6 text-ink">
+                      {pillar.title}
+                    </h3>
+                    {pillar.tag ? (
+                      <span className="rounded-full border border-violet/30 bg-violet/10 px-2 py-[1px] text-[10px] font-bold uppercase leading-[15px] tracking-[0.8px] text-violet">
+                        {pillar.tag}
+                      </span>
+                    ) : null}
+                  </div>
                   <p className="max-w-[440px] text-[14px] leading-5 text-ink-muted">
                     {pillar.body}
                   </p>
@@ -80,6 +96,16 @@ export default function Trust() {
               </li>
             ))}
           </ul>
+
+          <p className="max-w-[560px] pt-6 text-[16px] leading-[26px] text-ink-soft">
+            Most governance arrives late. A log you read after something has
+            already gone wrong tells you who to blame, not what to stop. Rolvo
+            puts the controls in front of the work instead: a skill fixes what an
+            agent may touch before it starts, a person signs off before anything
+            is deployed, and the package in between is there to be read line by
+            line. Smaller plans carry fewer governance features on purpose — the
+            directory-level controls large IT teams need sit on Enterprise.
+          </p>
         </div>
 
         <div className="relative">
@@ -96,7 +122,7 @@ export default function Trust() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/assets/trust-governance-visual.svg"
-              alt="Layered approval checkpoints arranged around a central verified release."
+              alt="A unit of work held at an approval checkpoint before release."
               width={640}
               height={420}
               className="aspect-[640/420] w-full rounded-[12px] border border-line bg-white object-cover text-ink-faint shadow-[0_20px_60px_0_rgba(17,17,17,0.08)]"

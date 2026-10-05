@@ -2,46 +2,34 @@ import Eyebrow from "../Eyebrow";
 
 const SPECIALISTS = [
   {
-    id: "piper",
-    name: "Piper",
-    role: "Project Manager",
-    points: ["Plans scope & milestones", "Delivery coordination"],
+    id: "bria",
+    name: "Bria",
+    role: "Salesforce BA Agent",
+    line: "Fuzzy requirement to crisp acceptance criteria.",
   },
   {
     id: "arden",
     name: "Arden",
-    role: "Solution Architect",
-    points: ["Defines technical direction", "Metadata architecture"],
-  },
-  {
-    id: "bria",
-    name: "Bria",
-    role: "Business Analyst",
-    points: ["Requirement structuring", "User story mapping"],
+    role: "Salesforce Architect Agent",
+    line: "Data model, org strategy, scalable solution.",
   },
   {
     id: "devon",
     name: "Devon",
-    role: "Developer",
-    points: ["Apex, LWC & Flow", "Meta-data configuration"],
+    role: "Salesforce Developer Agent",
+    line: "Apex, LWC and Flows — committed to your repo.",
   },
   {
     id: "quinn",
     name: "Quinn",
-    role: "Quality Assurance",
-    points: ["Test coverage validation", "Release readiness"],
+    role: "Salesforce QA / Test Agent",
+    line: "Tests written, UAT run, sprint signed off.",
   },
   {
-    id: "mira",
-    name: "Mira",
-    role: "CPQ Specialist",
-    points: ["Quote-to-Cash logic", "Revenue Cloud migrations"],
-  },
-  {
-    id: "nova",
-    name: "Nova",
-    role: "Marketplace Specialist",
-    points: ["Community expertise", "External integrations"],
+    id: "piper",
+    name: "Piper",
+    role: "Salesforce PM Agent",
+    line: "Sprint run, backlog groomed, team moving.",
   },
 ];
 
@@ -65,49 +53,41 @@ export default function SpecialistRoster() {
           <div className="flex max-w-[672px] flex-col gap-[15.5px]">
             <Eyebrow>Specialist roster</Eyebrow>
             <h2 className="text-[32px] font-bold leading-[1.1] text-ink sm:text-[40px] lg:text-[48px] lg:leading-[48px]">
-              The right specialist for every stage of delivery.
+              One specialist per discipline. Not one assistant pretending to
+              cover all five.
             </h2>
           </div>
           <p className="max-w-[448px] text-[18px] leading-7 text-ink-soft">
-            Each specialist is tuned to a specific Salesforce discipline.
-            Combine them to form a coordinated delivery team.
+            Each specialist is tuned to one Salesforce discipline and works to
+            the standards you attach. Staff the ones your project needs. Every
+            plan includes all five.
           </p>
         </div>
 
-        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {SPECIALISTS.map((s) => (
             <li
               key={s.id}
-              className="flex flex-col rounded-[12px] border border-ink/[0.06] bg-white/70 p-[33px] shadow-[0_4px_24px_0_rgba(17,17,17,0.04)] backdrop-blur-[10px]"
+              className="flex flex-col rounded-[12px] border border-ink/[0.06] bg-white/70 p-7 shadow-[0_4px_24px_0_rgba(17,17,17,0.04)] backdrop-blur-[10px]"
             >
-              <span className="mb-6 grid size-16 place-items-center rounded-[8px] bg-violet/10 text-violet">
+              <span className="mb-6 grid size-14 place-items-center rounded-[8px] bg-violet/10 text-violet">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`/assets/agent-${s.id}.svg`}
                   alt=""
-                  width={32}
-                  height={32}
+                  width={28}
+                  height={28}
                 />
               </span>
               <h3 className="text-[20px] font-bold leading-7 text-ink">
                 {s.name}
               </h3>
-              <p className="mb-6 text-[14px] leading-5 text-ink-muted">
+              <p className="pb-4 text-[13px] leading-5 text-ink-muted">
                 {s.role}
               </p>
-              <ul className="flex flex-col gap-3">
-                {s.points.map((p) => (
-                  <li key={p} className="flex items-center gap-2">
-                    <span
-                      aria-hidden
-                      className="size-[6px] shrink-0 rounded-full bg-brand"
-                    />
-                    <span className="text-[12px] leading-4 text-ink-soft">
-                      {p}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <p className="mt-auto text-[14px] leading-[22px] text-ink-soft">
+                {s.line}
+              </p>
             </li>
           ))}
         </ul>

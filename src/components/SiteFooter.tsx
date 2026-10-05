@@ -13,9 +13,10 @@ const COLUMNS: Column[] = [
     title: "Product",
     links: [
       { label: "Overview", href: "#overview" },
+      { label: "How It Works", href: "#how-it-works" },
       { label: "Specialists", href: "#specialists" },
-      { label: "Playbooks", href: "#how-it-works" },
-      { label: "Marketplace", href: "#pricing" },
+      { label: "Skills", href: "#skills" },
+      { label: "Pricing", href: "#pricing" },
     ],
   },
   {

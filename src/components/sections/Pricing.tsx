@@ -1,13 +1,18 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import Eyebrow from "../Eyebrow";
 
 type Plan = {
   id: string;
-  nodeId: string;
   name: string;
   blurb: string;
-  price: string;
-  period?: string;
+  monthly: string;
+  yearly: string;
+  suffixMonthly: string;
+  suffixYearly: string;
+  allowance: string;
   features: string[];
   cta: { label: string; href: string };
   featured?: boolean;
@@ -15,152 +20,208 @@ type Plan = {
 
 const PLANS: Plan[] = [
   {
-    id: "individual",
-    nodeId: "5:3194",
-    name: "Individual Builder",
-    blurb: "For solo developers and admins.",
-    price: "$99",
-    period: "/mo",
-    features: ["3 core specialists", "50 tasks / month", "Basic audit trail"],
-    cta: { label: "Get Started", href: "#launch" },
+    id: "free",
+    name: "Free",
+    blurb: "See it work.",
+    monthly: "$0",
+    yearly: "$0",
+    suffixMonthly: "/mo",
+    suffixYearly: "/yr",
+    allowance: "25 tasks / month",
+    features: [
+      "All five specialists",
+      "1 active project",
+      "Your own model, no token charges",
+      "Community support",
+    ],
+    cta: { label: "Get started free", href: "#launch" },
   },
   {
-    id: "team",
-    nodeId: "5:3224",
-    name: "Delivery Team",
-    blurb: "For small delivery teams.",
-    price: "$399",
-    period: "/mo",
-    features: [
-      "All specialists + marketplace",
-      "Unlimited tasks",
-      "Full audit & approvals",
-    ],
-    cta: { label: "Get Started", href: "#launch" },
+    id: "pro",
+    name: "Pro",
+    blurb: "For one builder who ships.",
+    monthly: "$29",
+    yearly: "$290",
+    suffixMonthly: "/mo",
+    suffixYearly: "/yr",
+    allowance: "250 tasks / month",
+    features: ["Everything in Free", "Unlimited projects", "Email support"],
+    cta: { label: "Book a demo", href: "#contact" },
     featured: true,
   },
   {
+    id: "business",
+    name: "Business",
+    blurb: "For a team sharing the load.",
+    monthly: "$99",
+    yearly: "$990",
+    suffixMonthly: "/mo",
+    suffixYearly: "/yr",
+    allowance: "1,500 tasks / month",
+    features: [
+      "Everything in Pro",
+      "Team seats and roles",
+      "Priority agent runs",
+      "Multiple Salesforce orgs",
+    ],
+    cta: { label: "Book a demo", href: "#contact" },
+  },
+  {
     id: "enterprise",
-    nodeId: "5:3257",
     name: "Enterprise",
-    blurb: "For large organizations.",
-    price: "Custom",
-    features: ["Everything in Team", "Custom specialists", "Dedicated support"],
-    cta: { label: "Contact Sales", href: "#contact" },
+    blurb: "For orgs with governance to satisfy.",
+    monthly: "Custom",
+    yearly: "Custom",
+    suffixMonthly: "",
+    suffixYearly: "",
+    allowance: "Unlimited tasks",
+    features: [
+      "Everything in Business",
+      "SSO, SCIM and audit log export",
+      "Dedicated support and custom SLAs",
+    ],
+    cta: { label: "Book a demo", href: "#contact" },
   },
 ];
 
-function FeatureList({ features }: { features: string[] }) {
-  return (
-    <ul className="mb-10 flex flex-col gap-3">
-      {features.map((f) => (
-        <li key={f} className="flex items-center gap-3">
-          <span aria-hidden className="shrink-0 text-brand">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/assets/pricing-check.svg"
-              alt=""
-              width={13}
-              height={14}
-            />
-          </span>
-          <span className="text-[14px] leading-5 text-ink">{f}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function Price({ price, period }: { price: string; period?: string }) {
-  return (
-    <p className="mb-8 flex items-baseline gap-1">
-      <span className="text-[32px] font-bold leading-10 text-ink sm:text-[36px]">
-        {price}
-      </span>
-      {period ? (
-        <span className="text-[16px] leading-6 text-ink-faint">{period}</span>
-      ) : null}
-    </p>
-  );
-}
+const CARD =
+  "relative flex flex-col rounded-[8px] border border-ink/[0.06] bg-white/70 p-8 shadow-[0_4px_24px_0_rgba(17,17,17,0.04)] backdrop-blur-[10px]";
 
 export default function Pricing() {
+  const [yearly, setYearly] = useState(false);
+
   return (
     <section
       id="pricing"
       data-node-id="5:3185"
       className="bg-paper px-6 py-24 md:px-12"
     >
-      <div className="mx-auto flex max-w-[1440px] flex-col items-center gap-16 lg:gap-20">
-        <div
-          data-node-id="5:3187"
-          className="flex max-w-[768px] flex-col items-center gap-4 text-center"
-        >
+      <div className="mx-auto flex max-w-[1440px] flex-col items-center gap-12 lg:gap-16">
+        <div className="flex max-w-[768px] flex-col items-center gap-4 text-center">
           <Eyebrow>Pricing</Eyebrow>
-          <h2 className="text-[36px] font-extrabold leading-[1.1] tracking-[-0.04em] text-ink sm:text-[48px] lg:text-[72px] lg:leading-[64.8px]">
-            Simple, transparent pricing.
+          <h2 className="text-[32px] font-bold leading-[1.08] tracking-[-0.02em] text-ink sm:text-[44px] lg:text-[56px]">
+            Bring your own model. We never charge for tokens.
           </h2>
-          <p className="text-[16px] leading-6 text-ink-soft">
-            Plans pending final client confirmation. Get early access today.
+          <p className="max-w-[640px] text-[16px] leading-[26px] text-ink-soft">
+            Connect any major model — Claude, OpenAI, Google — with your own
+            subscription or key. You are billed for the work the specialists
+            deliver, metered in completed tasks, and never for tokens consumed.
+            Agent pricing that scales with usage makes budgets unforecastable.
+            This does not.
           </p>
         </div>
 
-        <ul
-          data-node-id="5:3193"
-          className="grid w-full max-w-[1024px] gap-8 sm:grid-cols-2 lg:grid-cols-3"
+        {/* billing toggle */}
+        <div
+          className="flex items-center gap-1 rounded-full border border-line bg-white p-1"
+          role="group"
+          aria-label="Billing period"
         >
-          {PLANS.map((plan) =>
-            plan.featured ? (
-              <li
-                key={plan.id}
-                data-node-id={plan.nodeId}
-                className="relative rounded-[8px] bg-gradient-to-br from-violet to-brand p-[2px] shadow-[0_20px_30px_0_rgba(124,92,255,0.2)]"
-              >
-                <span className="absolute -top-3 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-violet to-brand px-3 py-1 text-[10px] font-bold uppercase leading-[15px] tracking-[1px] text-white">
-                  Most popular
-                </span>
-                <div className="flex h-full flex-col rounded-[8px] bg-white p-8">
-                  <h3 className="mb-2 text-[20px] font-bold leading-7 text-ink">
-                    {plan.name}
-                  </h3>
-                  <p className="mb-6 text-[14px] leading-5 text-ink-muted">
-                    {plan.blurb}
-                  </p>
-                  <Price price={plan.price} period={plan.period} />
-                  <FeatureList features={plan.features} />
-                  <Link
-                    href={plan.cta.href}
-                    className="mt-auto rounded-[6px] bg-gradient-to-r from-violet to-brand py-3 text-center text-[16px] font-bold leading-6 text-white transition-opacity hover:opacity-90"
-                  >
-                    {plan.cta.label}
-                  </Link>
+          <button
+            type="button"
+            onClick={() => setYearly(false)}
+            aria-pressed={!yearly}
+            className={`rounded-full px-5 py-2 text-[14px] font-bold transition-colors ${
+              yearly ? "text-ink-muted hover:text-ink" : "bg-ink text-white"
+            }`}
+          >
+            Monthly
+          </button>
+          <button
+            type="button"
+            onClick={() => setYearly(true)}
+            aria-pressed={yearly}
+            className={`flex items-center gap-2 rounded-full px-5 py-2 text-[14px] font-bold transition-colors ${
+              yearly ? "bg-ink text-white" : "text-ink-muted hover:text-ink"
+            }`}
+          >
+            Yearly
+            <span className={yearly ? "text-white/70" : "text-violet"}>
+              2 months free
+            </span>
+          </button>
+        </div>
+
+        <ul className="grid w-full max-w-[1200px] gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {PLANS.map((plan) => (
+            <li key={plan.id} className="flex">
+              {plan.featured ? (
+                <div className="relative w-full rounded-[10px] bg-gradient-to-br from-violet to-brand-text p-[2px] shadow-[0_20px_30px_0_rgba(124,92,255,0.2)]">
+                  <span className="absolute left-1/2 top-0 z-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-violet to-brand-text px-3 py-1 text-[10px] font-bold uppercase leading-[15px] tracking-[0.5px] text-white">
+                    Most popular
+                  </span>
+                  <div className="flex h-full flex-col rounded-[8px] bg-white p-8">
+                    <PlanBody plan={plan} yearly={yearly} />
+                  </div>
                 </div>
-              </li>
-            ) : (
-              <li
-                key={plan.id}
-                data-node-id={plan.nodeId}
-                className="flex flex-col rounded-[8px] border border-ink/[0.06] bg-white/70 p-[33px] shadow-[0_4px_24px_0_rgba(17,17,17,0.04)] backdrop-blur-[10px]"
-              >
-                <h3 className="mb-2 text-[20px] font-bold leading-7 text-ink">
-                  {plan.name}
-                </h3>
-                <p className="mb-6 text-[14px] leading-5 text-ink-muted">
-                  {plan.blurb}
-                </p>
-                <Price price={plan.price} period={plan.period} />
-                <FeatureList features={plan.features} />
-                <Link
-                  href={plan.cta.href}
-                  className="mt-auto rounded-[6px] border border-ink py-[13px] text-center text-[16px] font-bold leading-6 text-ink transition-colors hover:bg-ink hover:text-white"
-                >
-                  {plan.cta.label}
-                </Link>
-              </li>
-            ),
-          )}
+              ) : (
+                <div className={CARD}>
+                  <PlanBody plan={plan} yearly={yearly} />
+                </div>
+              )}
+            </li>
+          ))}
         </ul>
+
+        <p className="max-w-[640px] text-center text-[14px] leading-[22px] text-ink-muted">
+          Every plan includes all five specialists and the full skill library.
+          Plans differ on how much work you run, not on who does it.
+        </p>
       </div>
     </section>
+  );
+}
+
+function PlanBody({ plan, yearly }: { plan: Plan; yearly: boolean }) {
+  const price = yearly ? plan.yearly : plan.monthly;
+  const suffix = yearly ? plan.suffixYearly : plan.suffixMonthly;
+
+  return (
+    <>
+      <h3 className="text-[20px] font-bold leading-7 text-ink">{plan.name}</h3>
+      <p className="pt-1 text-[14px] leading-5 text-ink-muted">{plan.blurb}</p>
+
+      <p className="flex items-baseline gap-1 pt-6">
+        <span className="text-[32px] font-bold leading-none text-ink sm:text-[36px]">
+          {price}
+        </span>
+        {suffix ? (
+          <span className="text-[14px] text-ink-faint">{suffix}</span>
+        ) : null}
+      </p>
+
+      <p className="mt-4 inline-flex w-fit items-center rounded-full bg-violet/10 px-3 py-1 text-[13px] font-bold leading-5 text-violet">
+        {plan.allowance}
+      </p>
+
+      <ul className="flex flex-col gap-2 pt-6">
+        {plan.features.map((f) => (
+          <li key={f} className="flex items-start gap-2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/assets/pricing-check.svg"
+              alt=""
+              width={13}
+              height={14}
+              className="mt-[5px] shrink-0 text-brand-text"
+            />
+            <span className="text-[14px] leading-[22px] text-ink-soft">{f}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-auto pt-8">
+        <Link
+          href={plan.cta.href}
+          className={`block rounded-[6px] px-6 py-3 text-center text-[15px] font-bold leading-6 transition-opacity hover:opacity-90 ${
+            plan.featured
+              ? "bg-gradient-to-r from-violet to-brand-text text-white"
+              : "border border-ink text-ink"
+          }`}
+        >
+          {plan.cta.label}
+        </Link>
+      </div>
+    </>
   );
 }
