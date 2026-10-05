@@ -1,0 +1,65 @@
+@import "tailwindcss";
+@import "@fontsource-variable/dm-sans";
+
+/* ──────────────────────────────────────────────────────────────
+   Rolvo design tokens.
+   Values taken from the Figma file (J0XK1xzauPMZy56g9jHnD1) and
+   cross-checked against the approved Variation 1 branding board.
+   Divergences from the board are marked CONFLICT.
+   ────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Brand — orange */
+  --color-brand: #ff5a00; /* fills and large display only — 3.0:1 on paper, fails AA as body text */
+  --color-brand-text: #c43a00; /* text-safe orange — 5.1:1 on paper */
+  --color-brand-amber: #ffbb00; /* board accent, unused in this design */
+
+  /* CONFLICT: violet is used throughout the design as a co-primary,
+     but does not appear on the approved Variation 1 board. */
+  --color-violet: #7c5cff;
+
+  /* Neutrals */
+  --color-ink: #111111;
+  --color-ink-soft: #4b5563;
+  --color-ink-muted: #6b7280;
+  --color-ink-faint: #9ca3af;
+  --color-paper: #faf9f7;
+  --color-line: #ece9e3;
+
+  /* Status */
+  --color-state-running: #4f46e5;
+  --color-state-success: #0a7350;
+  --color-state-warning: #8a5a00;
+  --color-state-error: #c81e4e;
+
+  --font-sans: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Liberation Mono", Menlo, monospace;
+}
+
+:root {
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Brand gradient used on display type and progress fills */
+.brand-gradient-text {
+  background-image: linear-gradient(90deg, var(--color-violet), var(--color-brand));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Soft radial glow blobs behind hero content */
+.glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(32px);
+  pointer-events: none;
+}
