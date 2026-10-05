@@ -125,7 +125,7 @@ export default function ProductProof() {
         {/* ── Stat strip ────────────────────────────────────────── */}
         <ul className="grid gap-8 border-t border-line pt-16 sm:grid-cols-2 lg:grid-cols-4">
           {STATS.map((stat) => (
-            <li key={stat.label} className="flex flex-col gap-2">
+            <li key={stat.label} className="flex flex-col items-center gap-2 text-center lg:items-start lg:text-left">
               <p className="brand-gradient-text text-[36px] font-bold leading-[1.05] sm:text-[40px] lg:text-[48px] lg:leading-[48px]">
                 {stat.value}
               </p>

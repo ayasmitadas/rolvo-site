@@ -40,7 +40,7 @@ export default function SubNav() {
         <div className="flex shrink-0 items-center gap-2">
           <Link
             href="#launch"
-            className="whitespace-nowrap rounded-[6px] bg-brand px-4 py-2 text-[13px] font-bold leading-[19.5px] text-ink transition-opacity hover:opacity-90 md:px-5"
+            className="whitespace-nowrap rounded-[6px] bg-brand px-4 py-2 text-[13px] font-bold leading-[19.5px] text-white transition-opacity hover:opacity-90 md:px-5"
           >
             Get started free
           </Link>

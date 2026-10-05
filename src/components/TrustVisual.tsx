@@ -68,7 +68,7 @@ export default function TrustVisual() {
             Held — nothing deploys until a person approves
           </p>
           <div className="mt-3 flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 rounded-[6px] bg-brand px-3 py-1.5 text-[12px] font-bold text-ink">
+            <span className="inline-flex items-center gap-1.5 rounded-[6px] bg-brand px-3 py-1.5 text-[12px] font-bold text-white">
               <Check size={13} strokeWidth={2.5} aria-hidden />
               Approve &amp; deploy
             </span>

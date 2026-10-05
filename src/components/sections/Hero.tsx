@@ -91,7 +91,7 @@ export default function Hero() {
           <div className="flex w-full flex-col items-stretch gap-3 pt-[9.3px] sm:w-auto sm:flex-row sm:gap-4">
             <Link
               href="#launch"
-              className="group inline-flex items-center justify-center gap-2 rounded-[6px] bg-brand px-8 py-4 text-[16px] font-bold leading-6 text-ink shadow-[0_10px_15px_rgba(255,90,0,0.25)] transition-opacity hover:opacity-90"
+              className="group inline-flex items-center justify-center gap-2 rounded-[6px] bg-brand px-8 py-4 text-[16px] font-bold leading-6 text-white shadow-[0_10px_15px_rgba(255,90,0,0.25)] transition-opacity hover:opacity-90"
             >
               Get started free
               <ArrowRight

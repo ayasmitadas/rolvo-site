@@ -86,7 +86,7 @@ const PLANS: Plan[] = [
 ];
 
 const CARD =
-  "relative flex flex-col rounded-[8px] border border-ink/[0.06] bg-white/70 p-8 shadow-[0_4px_24px_0_rgba(17,17,17,0.04)] backdrop-blur-[10px]";
+  "relative flex h-full w-full flex-col rounded-[10px] bg-white p-8 shadow-[0_4px_24px_0_rgba(17,17,17,0.04)]";
 
 export default function Pricing() {
   const [yearly, setYearly] = useState(false);
@@ -137,7 +137,7 @@ export default function Pricing() {
             }`}
           >
             Yearly
-            <span className={yearly ? "text-white/70" : "text-violet"}>
+            <span className="text-violet">
               2 months free
             </span>
           </button>
@@ -146,20 +146,20 @@ export default function Pricing() {
         <ul className="grid w-full max-w-[1200px] gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {PLANS.map((plan) => (
             <li key={plan.id} className="flex">
-              {plan.featured ? (
-                <div className="relative w-full rounded-[10px] bg-gradient-to-br from-violet to-brand-text p-[2px] shadow-[0_20px_30px_0_rgba(124,92,255,0.2)]">
-                  <span className="absolute left-1/2 top-0 z-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-violet to-brand-text px-3 py-1 text-[10px] font-bold uppercase leading-[15px] tracking-[0.5px] text-white">
+              <div
+                className={`${CARD} ${
+                  plan.featured
+                    ? "border-2 border-violet shadow-[0_20px_30px_0_rgba(124,92,255,0.18)]"
+                    : "border border-line"
+                }`}
+              >
+                {plan.featured ? (
+                  <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-violet px-3 py-1 text-[10px] font-bold uppercase leading-[15px] tracking-[0.5px] text-white">
                     Most popular
                   </span>
-                  <div className="flex h-full flex-col rounded-[8px] bg-white p-8">
-                    <PlanBody plan={plan} yearly={yearly} />
-                  </div>
-                </div>
-              ) : (
-                <div className={CARD}>
-                  <PlanBody plan={plan} yearly={yearly} />
-                </div>
-              )}
+                ) : null}
+                <PlanBody plan={plan} yearly={yearly} />
+              </div>
             </li>
           ))}
         </ul>
@@ -214,7 +214,7 @@ function PlanBody({ plan, yearly }: { plan: Plan; yearly: boolean }) {
           href={plan.cta.href}
           className={`block rounded-[6px] px-6 py-3 text-center text-[15px] font-bold leading-6 transition-opacity hover:opacity-90 ${
             plan.featured
-              ? "bg-gradient-to-r from-violet to-brand-text text-white"
+              ? "bg-violet text-white"
               : "border border-line bg-white text-ink shadow-[0_1px_2px_rgba(17,17,17,0.06)]"
           }`}
         >

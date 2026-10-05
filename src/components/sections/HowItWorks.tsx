@@ -104,7 +104,7 @@ export default function HowItWorks() {
             {STEPS.map((step) => {
               const Icon = step.icon;
               return (
-                <li key={step.n} className="flex flex-col items-start">
+                <li key={step.n} className="flex flex-col items-center text-center lg:items-start lg:text-left">
                   <span className="relative mb-5 grid size-[64px] lg:mb-8 lg:size-[80px] shrink-0 place-items-center rounded-full border border-ink/[0.06] bg-white/70 text-ink shadow-[0_4px_24px_0_rgba(17,17,17,0.04)] backdrop-blur-[10px]">
                     <Icon size={24} strokeWidth={1.75} aria-hidden />
                     <span className="absolute -right-3 -top-3 grid size-8 place-items-center rounded-full bg-brand text-[10px] font-bold leading-[15px] text-ink">
@@ -114,7 +114,7 @@ export default function HowItWorks() {
                   <h3 className="pb-3 text-[20px] font-bold leading-7 text-ink">
                     {step.title}
                   </h3>
-                  <p className="max-w-[200px] text-[14px] leading-[22.75px] text-ink-muted">
+                  <p className="mx-auto max-w-[220px] text-[14px] leading-[22.75px] text-ink-muted lg:mx-0 lg:max-w-[200px]">
                     {step.body}
                   </p>
                 </li>
