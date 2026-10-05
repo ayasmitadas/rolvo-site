@@ -1,3 +1,4 @@
+import { Check } from "lucide-react";
 import Eyebrow from "../Eyebrow";
 
 const PROOF_POINTS = [
@@ -44,13 +45,7 @@ export default function ProductProof() {
               {PROOF_POINTS.map((point) => (
                 <li key={point} className="flex items-start gap-4">
                   <span className="mt-1 grid size-6 shrink-0 place-items-center rounded-full bg-brand/10 text-brand">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src="/assets/proof-check.svg"
-                      alt=""
-                      width={10.5}
-                      height={12}
-                    />
+                    <Check size={12} strokeWidth={1.75} aria-hidden />
                   </span>
                   <span className="text-[16px] leading-6 text-ink-soft">
                     {point}

@@ -1,25 +1,22 @@
+import Image from "next/image";
+
 /**
- * PLACEHOLDER — the real Rolvo mark and wordmark are SVGs in the Figma file
- * (node 7:4210, assets fa5a4.svg + ab046.svg). This sandbox is blocked from
- * downloading figma.com assets, so this renders a stand-in at the correct
- * 103×36 footprint. Replace with the exported SVGs — see ASSETS.md.
+ * INTERIM ASSET — this is the supplied logo as a transparent PNG.
+ * The vector original ("Artboard 2.svg") did not come through, so replace
+ * public/assets/rolvo-logo.png with the SVG when it arrives. A mono and a
+ * reversed version are still needed for dark surfaces. See ASSETS.md.
+ *
+ * Size it with Tailwind height classes plus w-auto, e.g. `h-6 md:h-7`.
  */
-export default function Logo({ className = "" }: { className?: string }) {
+export default function Logo({ className = "h-7 w-auto" }: { className?: string }) {
   return (
-    <span
-      className={`inline-flex items-center gap-[8px] ${className}`}
-      data-node-id="7:4210"
-      data-placeholder="logo"
-    >
-      <span
-        aria-hidden
-        className="grid h-[28px] w-[28px] place-items-center rounded-[7px] bg-brand text-[16px] font-extrabold leading-none text-white"
-      >
-        R
-      </span>
-      <span className="text-[20px] font-extrabold tracking-[-0.5px] text-ink">
-        Rolvo
-      </span>
-    </span>
+    <Image
+      src="/assets/rolvo-logo.png"
+      alt="Rolvo"
+      width={732}
+      height={160}
+      priority
+      className={className}
+    />
   );
 }

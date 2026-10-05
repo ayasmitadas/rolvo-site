@@ -1,10 +1,15 @@
+import {
+  Building2,
+  CircleCheckBig,
+  Eye,
+  KeyRound,
+  type LucideIcon,
+} from "lucide-react";
 import Eyebrow from "../Eyebrow";
 
 type Pillar = {
   id: string;
-  icon: string;
-  iconWidth: number;
-  iconHeight: number;
+  icon: LucideIcon;
   title: string;
   body: string;
   tag?: string;
@@ -13,33 +18,25 @@ type Pillar = {
 const PILLARS: Pillar[] = [
   {
     id: "approval-gate",
-    icon: "/assets/trust-approval-gates.svg",
-    iconWidth: 16,
-    iconHeight: 16,
+    icon: CircleCheckBig,
     title: "The approval gate",
     body: "Nothing reaches production until a person approves it. The agents prepare the work and hand it back. You decide whether it ships.",
   },
   {
     id: "read-only-skill",
-    icon: "/assets/trust-read-only.svg",
-    iconWidth: 16,
-    iconHeight: 16,
+    icon: Eye,
     title: "Read-only when you say so",
     body: "Attach the Read-Only Access skill and an agent can inspect and query your org — nothing more. It cannot write, deploy or edit. Not a promise we make. A constraint you attach.",
   },
   {
     id: "your-model",
-    icon: "/assets/trust-key.svg",
-    iconWidth: 16,
-    iconHeight: 16,
+    icon: KeyRound,
     title: "Your model, your key",
     body: "Rolvo runs on the language model you connect, under your own API key. Your provider bills you for what you use. We never bill you for tokens.",
   },
   {
     id: "directory-controls",
-    icon: "/assets/trust-lock.svg",
-    iconWidth: 14,
-    iconHeight: 16,
+    icon: Building2,
     title: "Directory controls and audit logs",
     body: "Single sign-on, SCIM provisioning for joiners and leavers, and audit log export. Available on the Enterprise plan.",
     tag: "Enterprise",
@@ -67,34 +64,31 @@ export default function Trust() {
           </p>
 
           <ul className="flex flex-col gap-6 pt-6">
-            {PILLARS.map((pillar) => (
-              <li key={pillar.id} className="flex items-start gap-4">
-                <span className="grid size-10 shrink-0 place-items-center rounded-[4px] border border-ink/[0.06] bg-white/70 text-brand shadow-[0_4px_24px_0_rgba(17,17,17,0.04)] backdrop-blur-[10px]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={pillar.icon}
-                    alt=""
-                    width={pillar.iconWidth}
-                    height={pillar.iconHeight}
-                  />
-                </span>
-                <div className="flex flex-col gap-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="text-[16px] font-bold leading-6 text-ink">
-                      {pillar.title}
-                    </h3>
-                    {pillar.tag ? (
-                      <span className="rounded-full border border-violet/30 bg-violet/10 px-2 py-[1px] text-[10px] font-bold uppercase leading-[15px] tracking-[0.8px] text-violet">
-                        {pillar.tag}
-                      </span>
-                    ) : null}
+            {PILLARS.map((pillar) => {
+              const Icon = pillar.icon;
+              return (
+                <li key={pillar.id} className="flex items-start gap-4">
+                  <span className="grid size-10 shrink-0 place-items-center rounded-[4px] border border-ink/[0.06] bg-white/70 text-brand shadow-[0_4px_24px_0_rgba(17,17,17,0.04)] backdrop-blur-[10px]">
+                    <Icon size={16} strokeWidth={1.75} aria-hidden />
+                  </span>
+                  <div className="flex flex-col gap-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className="text-[16px] font-bold leading-6 text-ink">
+                        {pillar.title}
+                      </h3>
+                      {pillar.tag ? (
+                        <span className="rounded-full border border-violet/30 bg-violet/10 px-2 py-[1px] text-[10px] font-bold uppercase leading-[15px] tracking-[0.8px] text-violet">
+                          {pillar.tag}
+                        </span>
+                      ) : null}
+                    </div>
+                    <p className="max-w-[440px] text-[14px] leading-5 text-ink-muted">
+                      {pillar.body}
+                    </p>
                   </div>
-                  <p className="max-w-[440px] text-[14px] leading-5 text-ink-muted">
-                    {pillar.body}
-                  </p>
-                </div>
-              </li>
-            ))}
+                </li>
+              );
+            })}
           </ul>
 
           <p className="max-w-[560px] pt-6 text-[16px] leading-[26px] text-ink-soft">

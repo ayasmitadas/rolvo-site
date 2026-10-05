@@ -96,7 +96,7 @@ export default function SiteFooter() {
             className="flex flex-col gap-8 sm:col-span-2"
           >
             <Link href="#overview" aria-label="Rolvo home">
-              <Logo />
+              <Logo className="h-9 w-auto" />
             </Link>
             <p className="max-w-[320px] text-[14px] leading-5 text-ink-muted">
               © 2026 Selectiva Inc. All rights reserved. Rolvo is a Selectiva

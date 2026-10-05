@@ -1,10 +1,9 @@
+import { FileText, Lock, Workflow, type LucideIcon } from "lucide-react";
 import Eyebrow from "../Eyebrow";
 
 type Pillar = {
   id: string;
-  icon: string;
-  iconWidth: number;
-  iconHeight: number;
+  icon: LucideIcon;
   title: string;
   body: string;
 };
@@ -12,25 +11,19 @@ type Pillar = {
 const PILLARS: Pillar[] = [
   {
     id: "delivery-practice",
-    icon: "/assets/selectiva-chip.svg",
-    iconWidth: 36,
-    iconHeight: 36,
+    icon: Workflow,
     title: "Delivery practice, written down",
     body: "Rolvo's six stages follow the way a delivery team actually works: read the request, design it, build it, test it, package it, approve it. The method came off real projects.",
   },
   {
     id: "code-stays-yours",
-    icon: "/assets/selectiva-private.svg",
-    iconWidth: 36,
-    iconHeight: 36,
+    icon: Lock,
     title: "Your code stays yours",
     body: "Selectiva supplies the product and nothing more. We do not see your org, your metadata or the code the agents write. Your work is never routed to us for review.",
   },
   {
     id: "your-conventions",
-    icon: "/assets/selectiva-skill-file.svg",
-    iconWidth: 36,
-    iconHeight: 36,
+    icon: FileText,
     title: "Your conventions win",
     body: "Seven skill presets ship with Rolvo. Replace any of them with your own — your coding standards, your deployment rules, your naming. Writing your own costs nothing.",
   },
@@ -65,28 +58,25 @@ export default function Selectiva() {
         </p>
 
         <ul className="grid w-full max-w-[1024px] gap-8 pt-10 sm:grid-cols-2 lg:grid-cols-3 lg:pt-[49px]">
-          {PILLARS.map((pillar) => (
-            <li
-              key={pillar.id}
-              className="flex flex-col items-center gap-3 rounded-[12px] border border-ink/[0.06] bg-white/70 px-8 pb-10 pt-9 text-center shadow-[0_4px_24px_0_rgba(17,17,17,0.04)] backdrop-blur-[10px] sm:px-[41px] sm:pb-[41px] sm:pt-[36.5px]"
-            >
-              <span className="flex h-11 items-center justify-center text-brand">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={pillar.icon}
-                  alt=""
-                  width={pillar.iconWidth}
-                  height={pillar.iconHeight}
-                />
-              </span>
-              <h3 className="text-[20px] font-bold leading-7 text-ink">
-                {pillar.title}
-              </h3>
-              <p className="text-[16px] leading-6 text-ink-soft">
-                {pillar.body}
-              </p>
-            </li>
-          ))}
+          {PILLARS.map((pillar) => {
+            const Icon = pillar.icon;
+            return (
+              <li
+                key={pillar.id}
+                className="flex flex-col items-center gap-3 rounded-[12px] border border-ink/[0.06] bg-white/70 px-8 pb-10 pt-9 text-center shadow-[0_4px_24px_0_rgba(17,17,17,0.04)] backdrop-blur-[10px] sm:px-[41px] sm:pb-[41px] sm:pt-[36.5px]"
+              >
+                <span className="flex h-11 items-center justify-center text-brand">
+                  <Icon size={36} strokeWidth={1.75} aria-hidden />
+                </span>
+                <h3 className="text-[20px] font-bold leading-7 text-ink">
+                  {pillar.title}
+                </h3>
+                <p className="text-[16px] leading-6 text-ink-soft">
+                  {pillar.body}
+                </p>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>

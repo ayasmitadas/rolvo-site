@@ -1,39 +1,55 @@
+import {
+  ClipboardList,
+  Code2,
+  Network,
+  Package,
+  Rocket,
+  ShieldCheck,
+  type LucideIcon,
+} from "lucide-react";
 import Eyebrow from "../Eyebrow";
 
-const STEPS = [
+type Step = {
+  n: string;
+  icon: LucideIcon;
+  title: string;
+  body: string;
+};
+
+const STEPS: Step[] = [
   {
     n: "01",
-    icon: "assign",
+    icon: ClipboardList,
     title: "Assign",
     body: "Describe the Salesforce requirement and target environment in the console.",
   },
   {
     n: "02",
-    icon: "plan",
+    icon: Network,
     title: "Plan",
     body: "Rolvo's PM, BA and architecture specialists define and decompose the work.",
   },
   {
     n: "03",
-    icon: "build",
+    icon: Code2,
     title: "Build",
     body: "Implementation specialists produce metadata, configuration, and code.",
   },
   {
     n: "04",
-    icon: "review",
+    icon: ShieldCheck,
     title: "Review",
     body: "QA agents validate requirements, tests and package completeness.",
   },
   {
     n: "05",
-    icon: "package",
+    icon: Package,
     title: "Package",
     body: "Rolvo assembles a reviewable, compiled unit of work ready for inspection.",
   },
   {
     n: "06",
-    icon: "deploy",
+    icon: Rocket,
     title: "Deploy",
     body: "Send the approved package to the selected Salesforce environment.",
   },
@@ -84,30 +100,26 @@ export default function HowItWorks() {
             />
           </div>
 
-          <ol className="relative grid gap-10 sm:grid-cols-2 lg:grid-cols-6 lg:gap-4">
-            {STEPS.map((step) => (
-              <li key={step.n} className="flex flex-col items-start">
-                <span className="relative mb-8 grid size-[80px] shrink-0 place-items-center rounded-full border border-ink/[0.06] bg-white/70 shadow-[0_4px_24px_0_rgba(17,17,17,0.04)] backdrop-blur-[10px]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={`/assets/step-${step.icon}.svg`}
-                    alt=""
-                    width={24}
-                    height={24}
-                    className="text-ink"
-                  />
-                  <span className="absolute -right-3 -top-3 grid size-8 place-items-center rounded-full bg-brand-text text-[10px] font-bold leading-[15px] text-white">
-                    {step.n}
+          <ol className="relative grid gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-6 lg:gap-4">
+            {STEPS.map((step) => {
+              const Icon = step.icon;
+              return (
+                <li key={step.n} className="flex flex-col items-start">
+                  <span className="relative mb-5 grid size-[64px] lg:mb-8 lg:size-[80px] shrink-0 place-items-center rounded-full border border-ink/[0.06] bg-white/70 text-ink shadow-[0_4px_24px_0_rgba(17,17,17,0.04)] backdrop-blur-[10px]">
+                    <Icon size={24} strokeWidth={1.75} aria-hidden />
+                    <span className="absolute -right-3 -top-3 grid size-8 place-items-center rounded-full bg-brand text-[10px] font-bold leading-[15px] text-ink">
+                      {step.n}
+                    </span>
                   </span>
-                </span>
-                <h3 className="pb-3 text-[20px] font-bold leading-7 text-ink">
-                  {step.title}
-                </h3>
-                <p className="max-w-[200px] text-[14px] leading-[22.75px] text-ink-muted">
-                  {step.body}
-                </p>
-              </li>
-            ))}
+                  <h3 className="pb-3 text-[20px] font-bold leading-7 text-ink">
+                    {step.title}
+                  </h3>
+                  <p className="max-w-[200px] text-[14px] leading-[22.75px] text-ink-muted">
+                    {step.body}
+                  </p>
+                </li>
+              );
+            })}
           </ol>
         </div>
       </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { Check } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import Eyebrow from "../Eyebrow";
@@ -197,12 +198,10 @@ function PlanBody({ plan, yearly }: { plan: Plan; yearly: boolean }) {
       <ul className="flex flex-col gap-2 pt-6">
         {plan.features.map((f) => (
           <li key={f} className="flex items-start gap-2">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/assets/pricing-check.svg"
-              alt=""
-              width={13}
-              height={14}
+            <Check
+              size={14}
+              strokeWidth={1.75}
+              aria-hidden
               className="mt-[5px] shrink-0 text-brand-text"
             />
             <span className="text-[14px] leading-[22px] text-ink-soft">{f}</span>
@@ -216,7 +215,7 @@ function PlanBody({ plan, yearly }: { plan: Plan; yearly: boolean }) {
           className={`block rounded-[6px] px-6 py-3 text-center text-[15px] font-bold leading-6 transition-opacity hover:opacity-90 ${
             plan.featured
               ? "bg-gradient-to-r from-violet to-brand-text text-white"
-              : "border border-ink text-ink"
+              : "bg-ink text-white"
           }`}
         >
           {plan.cta.label}

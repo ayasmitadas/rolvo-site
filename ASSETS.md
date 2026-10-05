@@ -1,57 +1,50 @@
-# Asset replacement list
+# Assets
 
-Every SVG in `public/assets/` is a **temporary placeholder**. The build environment
-could not download the real exports from Figma — `figma.com` is blocked by the
-sandbox egress policy — so each icon was authored as a neutral stand-in at the
-dimensions the design specifies.
+Most icons now come from [Lucide](https://lucide.dev) as React components, so
+there is nothing to export for them. They inherit colour from their parent, scale
+cleanly, and stay consistent across the site. To change one, edit the import in
+the relevant component — there is no file to replace.
 
-To finish the build: export each asset from the Figma file
-(`J0XK1xzauPMZy56g9jHnD1`) as **SVG**, and overwrite the file of the same name in
-`public/assets/`. Keep the filenames exactly as they are — the components
-reference them by path. Nothing in the code needs changing.
+Three things still need real artwork.
 
-Per-section detail, including the Figma node id behind each placeholder, is in
-`docs/assets-*.md`.
+## 1. The Rolvo logo — real artwork, but raster
 
-## Logo — highest priority
+`public/assets/rolvo-logo.png` is the supplied horizontal lockup: gradient orange
+mark plus black wordmark, transparent background, 732×160 at 4.568:1.
+`src/components/Logo.tsx` renders it through `next/image` and is sized with
+Tailwind height classes (`h-6 md:h-7` in the header, `h-9` in the footer).
 
-| File | Figma node | Notes |
-| --- | --- | --- |
-| *(none yet)* | `7:4210` | The Rolvo mark + wordmark. Currently rendered as a text stand-in by `src/components/Logo.tsx` — an orange rounded square with an "R" plus the word "Rolvo". Replace that component's contents with the two exported SVGs (`fa5a4.svg` mark, `ab046.svg` wordmark) at 103×36. The footer uses the same component and needs it at 129.68×54, so give `Logo` a size prop at that point. |
+Two things still outstanding:
 
-## Hero and pipeline
+- **The vector.** "Artboard 2.svg" was attached but only a flattened preview
+  reached the build, so this is the PNG. Drop the SVG in over the same path
+  (renaming the reference in `Logo.tsx`) when it is available — sharper at any
+  size, smaller, and the only way the gradient stays crisp when scaled up.
+- **A reversed or mono version.** The wordmark is near-black, so this lockup
+  cannot sit on a dark surface. Nothing on the page needs that today, but a
+  dark hero section or an email signature would.
 
-| File | Size | Used by |
-| --- | --- | --- |
-| `icon-requirement.svg` | 9×12 | Hero console — "Requirement / Parsed" card |
-| `icon-code.svg` | 15×12 | Hero console — "Devon / Flow Built" card |
-| `icon-package.svg` | 11×12 | Hero console — "Package / Compiled" card |
-| `icon-arrow-right.svg` | 13×14 | Hero — "Book a deep dive" link |
-| `step-assign.svg` … `step-deploy.svg` (6) | 24×24 | How It Works — the six pipeline steps |
+## 2. Footer social icons
 
-## Specialists
+`footer-linkedin.svg`, `footer-twitter.svg`, `footer-youtube.svg` are my
+placeholders. Lucide removed brand icons, and brand marks should come from each
+platform's own brand assets rather than being redrawn — so these should be
+replaced with the official SVGs from LinkedIn, X and YouTube.
 
-`agent-piper.svg`, `agent-arden.svg`, `agent-bria.svg`, `agent-devon.svg`,
-`agent-quinn.svg`, `agent-mira.svg`, `agent-nova.svg` — all 32×32, one per
-specialist card.
+## 3. The Trust section illustration
 
-## Remaining sections
+`trust-governance-visual.svg` is a 640×420 placeholder standing in for Figma node
+`5:3144`. It is the one piece of real artwork on the page. When the real export
+goes in, check the `alt` text in `Trust.tsx` still describes what it shows.
 
-| File | Size | Section |
-| --- | --- | --- |
-| `proof-check.svg` | 10.5×12 | Product Proof — list bullets |
-| `playbook-cpq.svg`, `playbook-dunning.svg` | 30×30 | Playbooks — card icons |
-| `playbook-arrow.svg` | 14×16 | Playbooks — "Run Playbook" links |
-| `market-cpq.svg`, `market-service.svg`, `market-analytics.svg`, `market-integration.svg` | 12–20×16 | Marketplace — listing tiles |
-| `trust-approval-gates.svg`, `trust-audit-trail.svg` | 16×16 | Trust — pillar icons |
-| `trust-lock.svg` | 14×16 | Trust — pillar icon |
-| `trust-governance-visual.svg` | 640×420 | Trust — the large right-hand visual |
-| `selectiva-handoff.svg` | 45×36 | Selectiva — card icon |
-| `selectiva-chip.svg`, `selectiva-badge.svg` | 36×36 | Selectiva — card icons |
-| `pricing-check.svg` | 13×14 | Pricing — feature ticks |
-| `footer-linkedin.svg`, `footer-twitter.svg`, `footer-youtube.svg` | ~20×20 | Footer — social links |
+## Obsolete files
 
-One note on `selectiva-badge.svg` (node `5:3177`): that node renders in Figma as a
-dashed circle containing a question mark, which looks like an unresolved glyph
-rather than finished artwork. Worth checking what was intended before exporting —
-and if it is meant to be a compliance badge, it needs sign-off first.
+Everything else in `public/assets/` is left over from the hand-authored icon set
+and is no longer referenced by any component: the `agent-*`, `step-*`, `icon-*`,
+`trust-*` (except the visual above), `selectiva-*`, `market-*`, `playbook-*`,
+`pricing-check` and `proof-check` files.
+
+They are harmless and cost nothing. They are deliberately **not** deleted,
+because GitHub's web uploader can add and replace files but cannot remove them —
+deleting them would mean doing it by hand in GitHub. Clear them out whenever the
+project moves to a normal git workflow.

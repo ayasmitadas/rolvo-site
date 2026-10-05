@@ -1,10 +1,24 @@
 import Link from "next/link";
+import {
+  ArrowRight,
+  Code2,
+  FileText,
+  Package,
+  type LucideIcon,
+} from "lucide-react";
 
-const PIPELINE = [
-  { icon: "/assets/icon-requirement.svg", w: 9, h: 12, tint: "violet", label: "Requirement", value: "Parsed" },
-  { icon: "/assets/icon-code.svg", w: 15, h: 12, tint: "violet", label: "Devon", value: "Flow Built" },
-  { icon: "/assets/icon-package.svg", w: 11, h: 12, tint: "brand", label: "Package", value: "Compiled" },
-] as const;
+type Step = {
+  icon: LucideIcon;
+  tint: "violet" | "brand";
+  label: string;
+  value: string;
+};
+
+const PIPELINE: Step[] = [
+  { icon: FileText, tint: "violet", label: "Requirement", value: "Parsed" },
+  { icon: Code2, tint: "violet", label: "Devon", value: "Flow Built" },
+  { icon: Package, tint: "brand", label: "Package", value: "Compiled" },
+];
 
 const CODE = [
   { text: 'flow "Renewal_Notification" {', accent: true, indent: false },
@@ -74,24 +88,22 @@ export default function Hero() {
             A delivery team that ships. Not a chatbot that advises.
           </p>
 
-          <div className="flex flex-wrap items-stretch gap-4 pt-[9.3px]">
+          <div className="flex w-full flex-col items-stretch gap-3 pt-[9.3px] sm:w-auto sm:flex-row sm:gap-4">
             <Link
               href="#launch"
-              className="group inline-flex items-center gap-2 rounded-[6px] bg-brand-text px-8 py-4 text-[16px] font-bold leading-6 text-white shadow-[0_10px_15px_rgba(196,58,0,0.25)] transition-opacity hover:opacity-90"
+              className="group inline-flex items-center justify-center gap-2 rounded-[6px] bg-brand px-8 py-4 text-[16px] font-bold leading-6 text-ink shadow-[0_10px_15px_rgba(255,90,0,0.25)] transition-opacity hover:opacity-90"
             >
               Get started free
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/assets/icon-arrow-right.svg"
-                alt=""
-                width={13}
-                height={14}
+              <ArrowRight
+                size={16}
+                strokeWidth={2}
+                aria-hidden
                 className="transition-transform group-hover:translate-x-0.5"
               />
             </Link>
             <Link
               href="#contact"
-              className="rounded-[6px] border border-ink/[0.06] bg-white/70 px-[33px] py-[17px] text-[16px] font-bold leading-6 text-ink shadow-[0_4px_24px_0_rgba(17,17,17,0.04)] backdrop-blur-[10px] transition-colors hover:bg-white"
+              className="rounded-[6px] border border-ink/[0.06] bg-white/70 px-[33px] py-[17px] text-center text-[16px] font-bold leading-6 text-ink shadow-[0_4px_24px_0_rgba(17,17,17,0.04)] backdrop-blur-[10px] transition-colors hover:bg-white"
             >
               Book a demo
             </Link>
@@ -124,7 +136,7 @@ export default function Hero() {
             </div>
 
             <div className="flex flex-col gap-4 p-6">
-              <div className="flex items-center justify-between gap-3">
+              <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
                 <span className="text-[12px] font-bold uppercase leading-4 tracking-[1.2px] text-ink-muted">
                   Task #4471 · Renewal Flow
                 </span>
@@ -144,8 +156,7 @@ export default function Hero() {
                         step.tint === "violet" ? "bg-violet/10 text-violet" : "bg-brand/10 text-brand-text"
                       }`}
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={step.icon} alt="" width={step.w} height={step.h} />
+                      <step.icon size={16} strokeWidth={1.75} aria-hidden />
                     </span>
                     <p className="pt-3 text-[11px] leading-[16.5px] text-ink-muted">
                       {step.label}
