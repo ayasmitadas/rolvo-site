@@ -60,7 +60,7 @@ export default function HowItWorks() {
     <section
       id="how-it-works"
       data-node-id="5:2668"
-      className="relative overflow-hidden bg-paper px-6 pb-24 pt-14 md:px-12 lg:pb-32"
+      className="relative overflow-hidden bg-paper pb-24 pt-14 lg:pb-32"
     >
       <div
         aria-hidden
@@ -72,7 +72,7 @@ export default function HowItWorks() {
         }}
       />
 
-      <div className="relative mx-auto flex max-w-[1440px] flex-col gap-16 lg:gap-24">
+      <div className="relative mx-auto flex w-full max-w-[1440px] flex-col gap-16 px-6 md:px-12 lg:gap-24">
         <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
           <div className="flex max-w-[768px] flex-col gap-[14.9px]">
             <Eyebrow>The delivery pipeline</Eyebrow>

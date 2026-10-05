@@ -59,7 +59,7 @@ export default function SpecialistRoster() {
     <section
       id="specialists"
       data-node-id="5:2754"
-      className="relative overflow-hidden bg-line/30 px-6 py-24 md:px-12"
+      className="relative overflow-hidden bg-line/30 py-24"
     >
       {/* oversized R watermark */}
       <span
@@ -69,7 +69,7 @@ export default function SpecialistRoster() {
         R
       </span>
 
-      <div className="relative mx-auto flex max-w-[1440px] flex-col gap-16">
+      <div className="relative mx-auto flex w-full max-w-[1440px] flex-col gap-16 px-6 md:px-12">
         <div className="flex flex-col items-start justify-between gap-8 lg:flex-row">
           <div className="flex max-w-[672px] flex-col gap-[15.5px]">
             <Eyebrow>Specialist roster</Eyebrow>

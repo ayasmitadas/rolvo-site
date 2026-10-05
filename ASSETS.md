@@ -5,7 +5,7 @@ there is nothing to export for them. They inherit colour from their parent, scal
 cleanly, and stay consistent across the site. To change one, edit the import in
 the relevant component — there is no file to replace.
 
-Three things still need real artwork.
+Two things still need real artwork.
 
 ## 1. The Rolvo logo — real artwork, but raster
 
@@ -31,11 +31,17 @@ placeholders. Lucide removed brand icons, and brand marks should come from each
 platform's own brand assets rather than being redrawn — so these should be
 replaced with the official SVGs from LinkedIn, X and YouTube.
 
-## 3. The Trust section illustration
+## 3. The Trust section visual — now built, not drawn
 
-`trust-governance-visual.svg` is a 640×420 placeholder standing in for Figma node
-`5:3144`. It is the one piece of real artwork on the page. When the real export
-goes in, check the `alt` text in `Trust.tsx` still describes what it shows.
+`src/components/TrustVisual.tsx` replaces the old `trust-governance-visual.svg`
+placeholder. It is the approval checkpoint drawn as product UI — the attached
+read-only constraint, the package contents, and the approve-or-request-changes
+gate — using the same visual language as the hero console.
+
+Built as DOM rather than an image, so it stays sharp at any size, follows the
+brand tokens automatically, and its text is readable by search engines and
+screen readers. If a Figma illustration replaces it later, that is a design
+choice rather than a gap to fill.
 
 ## Obsolete files
 

@@ -95,9 +95,9 @@ export default function Pricing() {
     <section
       id="pricing"
       data-node-id="5:3185"
-      className="bg-paper px-6 py-24 md:px-12"
+      className="bg-paper py-24"
     >
-      <div className="mx-auto flex max-w-[1440px] flex-col items-center gap-12 lg:gap-16">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-12 px-6 md:px-12 lg:gap-16">
         <div className="flex max-w-[768px] flex-col items-center gap-4 text-center">
           <Eyebrow>Pricing</Eyebrow>
           <h2 className="text-[32px] font-bold leading-[1.08] tracking-[-0.02em] text-ink sm:text-[44px] lg:text-[56px]">
@@ -114,7 +114,7 @@ export default function Pricing() {
 
         {/* billing toggle */}
         <div
-          className="flex items-center gap-1 rounded-full border border-line bg-white p-1"
+          className="flex items-center gap-1 rounded-full border border-line bg-line/50 p-1"
           role="group"
           aria-label="Billing period"
         >
@@ -123,7 +123,7 @@ export default function Pricing() {
             onClick={() => setYearly(false)}
             aria-pressed={!yearly}
             className={`rounded-full px-5 py-2 text-[14px] font-bold transition-colors ${
-              yearly ? "text-ink-muted hover:text-ink" : "bg-ink text-white"
+              yearly ? "text-ink-muted hover:text-ink" : "bg-white text-ink shadow-[0_1px_3px_rgba(17,17,17,0.12)]"
             }`}
           >
             Monthly
@@ -133,7 +133,7 @@ export default function Pricing() {
             onClick={() => setYearly(true)}
             aria-pressed={yearly}
             className={`flex items-center gap-2 rounded-full px-5 py-2 text-[14px] font-bold transition-colors ${
-              yearly ? "bg-ink text-white" : "text-ink-muted hover:text-ink"
+              yearly ? "bg-white text-ink shadow-[0_1px_3px_rgba(17,17,17,0.12)]" : "text-ink-muted hover:text-ink"
             }`}
           >
             Yearly
@@ -215,7 +215,7 @@ function PlanBody({ plan, yearly }: { plan: Plan; yearly: boolean }) {
           className={`block rounded-[6px] px-6 py-3 text-center text-[15px] font-bold leading-6 transition-opacity hover:opacity-90 ${
             plan.featured
               ? "bg-gradient-to-r from-violet to-brand-text text-white"
-              : "bg-ink text-white"
+              : "border border-line bg-white text-ink shadow-[0_1px_2px_rgba(17,17,17,0.06)]"
           }`}
         >
           {plan.cta.label}

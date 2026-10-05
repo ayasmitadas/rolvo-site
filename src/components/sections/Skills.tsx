@@ -35,9 +35,9 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative overflow-hidden border-t border-line bg-line/30 px-6 py-24 md:px-12"
+      className="relative overflow-hidden border-t border-line bg-line/30 py-24"
     >
-      <div className="mx-auto flex max-w-[1440px] flex-col gap-14">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-14 px-6 md:px-12">
         <div className="flex flex-col items-start justify-between gap-8 lg:flex-row">
           <div className="flex max-w-[672px] flex-col gap-4">
             <Eyebrow>Standards</Eyebrow>

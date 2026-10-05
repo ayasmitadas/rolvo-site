@@ -84,9 +84,9 @@ export default function SiteFooter() {
   return (
     <footer
       data-node-id="5:3286"
-      className="border-t border-line bg-line/30 px-6 pb-12 pt-20 md:px-12 lg:pt-24"
+      className="border-t border-line bg-line/30 pb-12 pt-20 lg:pt-24"
     >
-      <div className="mx-auto flex max-w-[1440px] flex-col gap-16 lg:gap-20">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-16 px-6 md:px-12 lg:gap-20">
         <div
           data-node-id="5:3288"
           className="grid gap-12 sm:grid-cols-2 lg:grid-cols-6"

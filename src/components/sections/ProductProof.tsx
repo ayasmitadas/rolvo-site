@@ -14,10 +14,10 @@ const AGENTS: { name: string; tone: "violet" | "brand" }[] = [
 ];
 
 const STATS = [
-  { value: "Six", label: "Delivery stages, every task" },
-  { value: "Five", label: "Specialists, one per discipline" },
-  { value: "Seven", label: "Preset skills. Write your own, free." },
-  { value: "Zero", label: "Autonomous deployments" },
+  { value: "6", label: "Delivery stages, every task" },
+  { value: "5", label: "Specialists, one per discipline" },
+  { value: "7", label: "Preset skills. Write your own, free." },
+  { value: "0", label: "Autonomous deployments" },
 ];
 
 export default function ProductProof() {
@@ -25,9 +25,9 @@ export default function ProductProof() {
     <section
       id="product-proof"
       data-node-id="5:2884"
-      className="relative overflow-hidden border-t border-line bg-paper px-6 py-24 md:px-12"
+      className="relative overflow-hidden border-t border-line bg-paper py-24"
     >
-      <div className="mx-auto flex max-w-[1440px] flex-col gap-16 lg:gap-32">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-16 px-6 md:px-12 lg:gap-32">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* ── Copy column ─────────────────────────────────────── */}
           <div className="flex flex-col gap-4">

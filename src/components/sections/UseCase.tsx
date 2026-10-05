@@ -25,9 +25,9 @@ export default function UseCase() {
     <section
       id="example"
       data-node-id="5:2964"
-      className="border-t border-line bg-line/30 px-6 py-24 md:px-12"
+      className="border-t border-line bg-line/30 py-24"
     >
-      <div className="mx-auto flex max-w-[1440px] flex-col gap-8">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-6 md:px-12">
         <div className="flex flex-col gap-4">
           <Eyebrow>Example output</Eyebrow>
           <h2 className="max-w-[900px] text-[32px] font-bold leading-[1.1] text-ink sm:text-[40px] lg:text-[48px] lg:leading-[48px]">

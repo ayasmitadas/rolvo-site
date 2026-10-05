@@ -6,6 +6,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import Eyebrow from "../Eyebrow";
+import TrustVisual from "../TrustVisual";
 
 type Pillar = {
   id: string;
@@ -48,9 +49,9 @@ export default function Trust() {
     <section
       id="trust"
       data-node-id="5:3103"
-      className="relative overflow-hidden border-t border-line bg-paper px-6 py-24 md:px-12"
+      className="relative overflow-hidden border-t border-line bg-paper py-24"
     >
-      <div className="mx-auto grid max-w-[1440px] items-center gap-14 lg:grid-cols-2 lg:gap-16">
+      <div className="mx-auto grid w-full max-w-[1440px] items-center gap-14 px-6 md:px-12 lg:grid-cols-2 lg:gap-16">
         <div className="flex flex-col gap-4">
           <Eyebrow>Control &amp; governance</Eyebrow>
 
@@ -112,16 +113,7 @@ export default function Trust() {
               filter: "blur(50px)",
             }}
           />
-          <figure className="relative m-0">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/assets/trust-governance-visual.svg"
-              alt="A unit of work held at an approval checkpoint before release."
-              width={640}
-              height={420}
-              className="aspect-[640/420] w-full rounded-[12px] border border-line bg-white object-cover text-ink-faint shadow-[0_20px_60px_0_rgba(17,17,17,0.08)]"
-            />
-          </figure>
+          <TrustVisual />
         </div>
       </div>
     </section>

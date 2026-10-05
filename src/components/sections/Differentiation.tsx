@@ -11,9 +11,9 @@ export default function Differentiation() {
   return (
     <section
       data-node-id="5:2620"
-      className="border-b border-line bg-paper px-6 py-16 md:px-12 lg:py-24"
+      className="border-b border-line bg-paper py-16 lg:py-24"
     >
-      <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-12">
+      <div className="mx-auto grid w-full max-w-[1440px] gap-12 px-6 md:px-12 lg:grid-cols-12">
         <div className="flex min-w-0 flex-col gap-4 lg:col-span-4">
           <Eyebrow>Built for a different job</Eyebrow>
           <h2 className="text-[28px] font-bold leading-[1.15] text-ink sm:text-[36px] sm:leading-[40px]">

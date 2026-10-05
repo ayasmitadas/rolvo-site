@@ -34,7 +34,7 @@ export default function Selectiva() {
     <section
       id="selectiva"
       data-node-id="5:3145"
-      className="relative overflow-hidden border-t border-line bg-line/30 px-6 py-24 md:px-12"
+      className="relative overflow-hidden border-t border-line bg-line/30 py-24"
     >
       {/* oversized R watermark */}
       <span
@@ -44,7 +44,7 @@ export default function Selectiva() {
         R
       </span>
 
-      <div className="relative mx-auto flex max-w-[1440px] flex-col items-center gap-[15px]">
+      <div className="relative mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[15px] px-6 md:px-12">
         <Eyebrow>Built by Selectiva</Eyebrow>
 
         <h2 className="max-w-[960px] text-center text-[32px] font-extrabold leading-[1.06] tracking-[-1.2px] text-ink sm:text-[48px] sm:tracking-[-1.9px] lg:text-[72px] lg:leading-[64.8px] lg:tracking-[-2.88px]">
