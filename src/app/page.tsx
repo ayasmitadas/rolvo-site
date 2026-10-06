@@ -2,9 +2,11 @@ import SubNav from "@/components/SubNav";
 import SiteFooter from "@/components/SiteFooter";
 import Hero from "@/components/sections/Hero";
 import Differentiation from "@/components/sections/Differentiation";
+import ProductTour from "@/components/sections/ProductTour";
 import HowItWorks from "@/components/sections/HowItWorks";
 import SpecialistRoster from "@/components/sections/SpecialistRoster";
 import Skills from "@/components/sections/Skills";
+import Features from "@/components/sections/Features";
 import ProductProof from "@/components/sections/ProductProof";
 import UseCase from "@/components/sections/UseCase";
 import Trust from "@/components/sections/Trust";
@@ -22,9 +24,11 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Differentiation />
+        <ProductTour />
         <HowItWorks />
         <SpecialistRoster />
         <Skills />
+        <Features />
         <ProductProof />
         <UseCase />
         <Trust />

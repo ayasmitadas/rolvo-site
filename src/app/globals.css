@@ -63,3 +63,100 @@ body {
   filter: blur(32px);
   pointer-events: none;
 }
+
+/* ──────────────────────────────────────────────────────────────
+   Product tour — CSS-only screen picker. Radio inputs sit before
+   .tour-body; each :checked state reveals one panel and lights its
+   label. No JavaScript, so the section works in a static export.
+   ────────────────────────────────────────────────────────────── */
+
+.tour { position: relative; }
+
+.tour-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tour-panel { display: none; }
+
+
+#tour-0:checked ~ .tour-body .tour-panel[data-i="0"] { display: block; }
+#tour-0:checked ~ .tour-body .tour-tab[data-i="0"] {
+  background: #fff;
+  border-color: rgba(17, 17, 17, 0.1);
+  box-shadow: 0 4px 24px 0 rgba(17, 17, 17, 0.04);
+}
+#tour-0:checked ~ .tour-body .tour-tab[data-i="0"] .tour-n { color: var(--color-brand-text); }
+#tour-0:checked ~ .tour-body .tour-tab[data-i="0"] .tour-name { color: var(--color-ink); }
+#tour-0:focus-visible ~ .tour-body .tour-tab[data-i="0"] {
+  outline: 2px solid var(--color-violet);
+  outline-offset: 2px;
+}
+
+#tour-1:checked ~ .tour-body .tour-panel[data-i="1"] { display: block; }
+#tour-1:checked ~ .tour-body .tour-tab[data-i="1"] {
+  background: #fff;
+  border-color: rgba(17, 17, 17, 0.1);
+  box-shadow: 0 4px 24px 0 rgba(17, 17, 17, 0.04);
+}
+#tour-1:checked ~ .tour-body .tour-tab[data-i="1"] .tour-n { color: var(--color-brand-text); }
+#tour-1:checked ~ .tour-body .tour-tab[data-i="1"] .tour-name { color: var(--color-ink); }
+#tour-1:focus-visible ~ .tour-body .tour-tab[data-i="1"] {
+  outline: 2px solid var(--color-violet);
+  outline-offset: 2px;
+}
+
+#tour-2:checked ~ .tour-body .tour-panel[data-i="2"] { display: block; }
+#tour-2:checked ~ .tour-body .tour-tab[data-i="2"] {
+  background: #fff;
+  border-color: rgba(17, 17, 17, 0.1);
+  box-shadow: 0 4px 24px 0 rgba(17, 17, 17, 0.04);
+}
+#tour-2:checked ~ .tour-body .tour-tab[data-i="2"] .tour-n { color: var(--color-brand-text); }
+#tour-2:checked ~ .tour-body .tour-tab[data-i="2"] .tour-name { color: var(--color-ink); }
+#tour-2:focus-visible ~ .tour-body .tour-tab[data-i="2"] {
+  outline: 2px solid var(--color-violet);
+  outline-offset: 2px;
+}
+
+#tour-3:checked ~ .tour-body .tour-panel[data-i="3"] { display: block; }
+#tour-3:checked ~ .tour-body .tour-tab[data-i="3"] {
+  background: #fff;
+  border-color: rgba(17, 17, 17, 0.1);
+  box-shadow: 0 4px 24px 0 rgba(17, 17, 17, 0.04);
+}
+#tour-3:checked ~ .tour-body .tour-tab[data-i="3"] .tour-n { color: var(--color-brand-text); }
+#tour-3:checked ~ .tour-body .tour-tab[data-i="3"] .tour-name { color: var(--color-ink); }
+#tour-3:focus-visible ~ .tour-body .tour-tab[data-i="3"] {
+  outline: 2px solid var(--color-violet);
+  outline-offset: 2px;
+}
+
+#tour-4:checked ~ .tour-body .tour-panel[data-i="4"] { display: block; }
+#tour-4:checked ~ .tour-body .tour-tab[data-i="4"] {
+  background: #fff;
+  border-color: rgba(17, 17, 17, 0.1);
+  box-shadow: 0 4px 24px 0 rgba(17, 17, 17, 0.04);
+}
+#tour-4:checked ~ .tour-body .tour-tab[data-i="4"] .tour-n { color: var(--color-brand-text); }
+#tour-4:checked ~ .tour-body .tour-tab[data-i="4"] .tour-name { color: var(--color-ink); }
+#tour-4:focus-visible ~ .tour-body .tour-tab[data-i="4"] {
+  outline: 2px solid var(--color-violet);
+  outline-offset: 2px;
+}
+
+#tour-5:checked ~ .tour-body .tour-panel[data-i="5"] { display: block; }
+#tour-5:checked ~ .tour-body .tour-tab[data-i="5"] {
+  background: #fff;
+  border-color: rgba(17, 17, 17, 0.1);
+  box-shadow: 0 4px 24px 0 rgba(17, 17, 17, 0.04);
+}
+#tour-5:checked ~ .tour-body .tour-tab[data-i="5"] .tour-n { color: var(--color-brand-text); }
+#tour-5:checked ~ .tour-body .tour-tab[data-i="5"] .tour-name { color: var(--color-ink); }
+#tour-5:focus-visible ~ .tour-body .tour-tab[data-i="5"] {
+  outline: 2px solid var(--color-violet);
+  outline-offset: 2px;
+}

@@ -16,6 +16,7 @@ const COLUMNS: Column[] = [
       { label: "How It Works", href: "#how-it-works" },
       { label: "Specialists", href: "#specialists" },
       { label: "Skills", href: "#skills" },
+      { label: "Features", href: "#features" },
       { label: "Pricing", href: "#pricing" },
     ],
   },

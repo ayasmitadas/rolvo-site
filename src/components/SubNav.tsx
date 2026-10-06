@@ -4,9 +4,11 @@ import MobileMenu from "./MobileMenu";
 
 const LINKS = [
   { label: "Overview", href: "#overview", active: true },
+  { label: "Product", href: "#product", active: false },
   { label: "How It Works", href: "#how-it-works", active: false },
   { label: "Specialists", href: "#specialists", active: false },
   { label: "Skills", href: "#skills", active: false },
+  { label: "Features", href: "#features", active: false },
   { label: "Pricing", href: "#pricing", active: false },
 ];
 

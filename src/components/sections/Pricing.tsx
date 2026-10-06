@@ -4,6 +4,7 @@ import { Check } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import Eyebrow from "../Eyebrow";
+import PricingComparison from "../PricingComparison";
 
 type Plan = {
   id: string;
@@ -165,9 +166,11 @@ export default function Pricing() {
         </ul>
 
         <p className="max-w-[640px] text-center text-[14px] leading-[22px] text-ink-muted">
-          Every plan includes all five specialists and the full skill library.
-          Plans differ on how much work you run, not on who does it.
+          Every plan includes all five specialists, the full skill library and
+          the ten base-product features. You scale on how much work you run.
         </p>
+
+        <PricingComparison />
       </div>
     </section>
   );
