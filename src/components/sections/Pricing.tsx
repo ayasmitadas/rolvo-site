@@ -4,7 +4,7 @@ import { Check } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import Eyebrow from "../Eyebrow";
-import PricingComparison from "../PricingComparison";
+import Reveal from "../motion/Reveal";
 
 type Plan = {
   id: string;
@@ -87,7 +87,7 @@ const PLANS: Plan[] = [
 ];
 
 const CARD =
-  "relative flex h-full w-full flex-col rounded-[10px] bg-white p-8 shadow-[0_4px_24px_0_rgba(17,17,17,0.04)]";
+  "relative flex h-full w-full flex-col rounded-[10px] bg-card p-8 shadow-card";
 
 export default function Pricing() {
   const [yearly, setYearly] = useState(false);
@@ -99,19 +99,40 @@ export default function Pricing() {
       className="bg-paper py-24"
     >
       <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-12 px-6 md:px-12 lg:gap-16">
-        <div className="flex max-w-[768px] flex-col items-center gap-4 text-center">
-          <Eyebrow>Pricing</Eyebrow>
-          <h2 className="text-[32px] font-bold leading-[1.08] tracking-[-0.02em] text-ink sm:text-[44px] lg:text-[56px]">
+        <Reveal className="flex max-w-[768px] flex-col items-center gap-4 text-center">
+          <Eyebrow>Simple, predictable pricing</Eyebrow>
+          <h2 className="text-[32px] font-extrabold leading-[1.06] tracking-[-0.8px] text-ink sm:text-[42px] lg:text-[52px] lg:leading-[53px] lg:tracking-[-1.3px]">
             Bring your own model. We never charge for tokens.
           </h2>
-          <p className="max-w-[640px] text-[16px] leading-[26px] text-ink-soft">
-            Connect any major model — Claude, OpenAI, Google — with your own
-            subscription or key. You are billed for the work the specialists
-            deliver, metered in completed tasks, and never for tokens consumed.
-            Agent pricing that scales with usage makes budgets unforecastable.
-            This does not.
+          <p className="max-w-[640px] text-[18px] leading-[29.25px] text-ink-soft">
+            Connect Claude, OpenAI or Google with your own subscription or key.
+            Choose the task capacity and team access that fit your work.
           </p>
-        </div>
+        </Reveal>
+
+        {/* bring your own model */}
+        <Reveal delay={80} className="w-full max-w-[1200px]">
+          <div className="flex flex-col items-center gap-5 rounded-[12px] border border-line bg-card px-6 py-8 text-center sm:flex-row sm:justify-between sm:text-left">
+            <div className="flex flex-col gap-1">
+              <p className="text-[11px] font-bold uppercase leading-[16.5px] tracking-[1.1px] text-ink-muted">
+                Bring your own model
+              </p>
+              <p className="text-[16px] leading-6 text-ink">
+                Your existing model subscription or key. Your choice.
+              </p>
+            </div>
+            <ul className="flex flex-wrap items-center justify-center gap-2">
+              {["OpenAI", "Claude", "Google"].map((m) => (
+                <li
+                  key={m}
+                  className="card-hover rounded-[6px] border border-line bg-paper px-4 py-2 text-[14px] font-bold leading-5 text-ink"
+                >
+                  {m}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
 
         {/* billing toggle */}
         <div
@@ -124,7 +145,7 @@ export default function Pricing() {
             onClick={() => setYearly(false)}
             aria-pressed={!yearly}
             className={`rounded-full px-5 py-2 text-[14px] font-bold transition-colors ${
-              yearly ? "text-ink-muted hover:text-ink" : "bg-white text-ink shadow-[0_1px_3px_rgba(17,17,17,0.12)]"
+              yearly ? "text-ink-muted hover:text-ink" : "bg-card text-ink shadow-card"
             }`}
           >
             Monthly
@@ -134,11 +155,11 @@ export default function Pricing() {
             onClick={() => setYearly(true)}
             aria-pressed={yearly}
             className={`flex items-center gap-2 rounded-full px-5 py-2 text-[14px] font-bold transition-colors ${
-              yearly ? "bg-white text-ink shadow-[0_1px_3px_rgba(17,17,17,0.12)]" : "text-ink-muted hover:text-ink"
+              yearly ? "bg-card text-ink shadow-card" : "text-ink-muted hover:text-ink"
             }`}
           >
             Yearly
-            <span className="text-violet">
+            <span className="text-brand">
               2 months free
             </span>
           </button>
@@ -146,16 +167,16 @@ export default function Pricing() {
 
         <ul className="grid w-full max-w-[1200px] gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {PLANS.map((plan) => (
-            <li key={plan.id} className="flex">
+            <li key={plan.id} className="flex card-hover">
               <div
                 className={`${CARD} ${
                   plan.featured
-                    ? "border-2 border-violet shadow-[0_20px_30px_0_rgba(124,92,255,0.18)]"
+                    ? "border-2 border-brand shadow-panel"
                     : "border border-line"
                 }`}
               >
                 {plan.featured ? (
-                  <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-violet px-3 py-1 text-[10px] font-bold uppercase leading-[15px] tracking-[0.5px] text-white">
+                  <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-brand px-3 py-1 text-[10px] font-bold uppercase leading-[15px] tracking-[0.5px] text-white">
                     Most popular
                   </span>
                 ) : null}
@@ -170,7 +191,6 @@ export default function Pricing() {
           the ten base-product features. You scale on how much work you run.
         </p>
 
-        <PricingComparison />
       </div>
     </section>
   );
@@ -194,7 +214,7 @@ function PlanBody({ plan, yearly }: { plan: Plan; yearly: boolean }) {
         ) : null}
       </p>
 
-      <p className="mt-4 inline-flex w-fit items-center rounded-full bg-violet/10 px-3 py-1 text-[13px] font-bold leading-5 text-violet">
+      <p className="mt-4 inline-flex w-fit items-center rounded-full bg-brand-soft px-3 py-1 text-[13px] font-bold leading-5 text-brand">
         {plan.allowance}
       </p>
 
@@ -217,8 +237,8 @@ function PlanBody({ plan, yearly }: { plan: Plan; yearly: boolean }) {
           href={plan.cta.href}
           className={`block rounded-[6px] px-6 py-3 text-center text-[15px] font-bold leading-6 transition-opacity hover:opacity-90 ${
             plan.featured
-              ? "bg-violet text-white"
-              : "border border-line bg-white text-ink shadow-[0_1px_2px_rgba(17,17,17,0.06)]"
+              ? "bg-brand text-white"
+              : "border border-line bg-card text-ink shadow-card"
           }`}
         >
           {plan.cta.label}

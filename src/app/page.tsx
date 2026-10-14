@@ -1,39 +1,33 @@
 import SubNav from "@/components/SubNav";
 import SiteFooter from "@/components/SiteFooter";
 import Hero from "@/components/sections/Hero";
+import DeliveryMotion from "@/components/sections/DeliveryMotion";
 import Differentiation from "@/components/sections/Differentiation";
-import ProductTour from "@/components/sections/ProductTour";
-import HowItWorks from "@/components/sections/HowItWorks";
-import SpecialistRoster from "@/components/sections/SpecialistRoster";
-import Skills from "@/components/sections/Skills";
-import Features from "@/components/sections/Features";
-import ProductProof from "@/components/sections/ProductProof";
-import UseCase from "@/components/sections/UseCase";
-import Trust from "@/components/sections/Trust";
-import Selectiva from "@/components/sections/Selectiva";
+import Pipeline from "@/components/sections/Pipeline";
+import Specialists from "@/components/sections/Specialists";
+import Workspace from "@/components/sections/Workspace";
+import Governance from "@/components/sections/Governance";
 import Pricing from "@/components/sections/Pricing";
+import FinalCta from "@/components/sections/FinalCta";
 
-// Playbooks and Marketplace are built but deliberately not rendered —
-// both capabilities are deferred, and Skills supersedes the marketplace.
-// See src/components/sections/Playbooks.tsx and Marketplace.tsx.
+// Content follows rolvo-3.vercel.app, which is the source of truth for
+// copy. Dark and light bands alternate as in Figma frame 1:3 — a section
+// renders dark by carrying `on-dark` (see globals.css).
 
 export default function Home() {
   return (
     <>
       <SubNav />
       <main className="flex-1">
-        <Hero />
-        <Differentiation />
-        <ProductTour />
-        <HowItWorks />
-        <SpecialistRoster />
-        <Skills />
-        <Features />
-        <ProductProof />
-        <UseCase />
-        <Trust />
-        <Selectiva />
-        <Pricing />
+        <Hero />            {/* dark  */}
+        <DeliveryMotion />  {/* light */}
+        <Differentiation /> {/* light */}
+        <Pipeline />        {/* dark  */}
+        <Specialists />     {/* light */}
+        <Workspace />       {/* light */}
+        <Governance />      {/* dark  */}
+        <Pricing />         {/* light */}
+        <FinalCta />        {/* dark  */}
       </main>
       <SiteFooter />
     </>

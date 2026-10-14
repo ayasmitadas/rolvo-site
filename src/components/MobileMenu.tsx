@@ -43,7 +43,7 @@ export default function MobileMenu({ links }: { links: NavLink[] }) {
         aria-expanded={open}
         aria-controls="mobile-nav"
         aria-label={open ? "Close menu" : "Open menu"}
-        className="grid size-10 place-items-center rounded-[6px] border border-ink/[0.08] bg-white/70 text-ink transition-colors hover:bg-white"
+        className="grid size-10 place-items-center rounded-[6px] border border-line bg-card text-ink transition-colors hover:bg-card"
       >
         {open ? (
           <X size={20} strokeWidth={1.75} aria-hidden />
@@ -57,7 +57,7 @@ export default function MobileMenu({ links }: { links: NavLink[] }) {
           <div
             ref={panelRef}
             id="mobile-nav"
-            className="border-b border-line bg-paper px-6 pb-8 pt-2 shadow-[0_12px_32px_rgba(17,17,17,0.08)]"
+            className="border-b border-line bg-paper px-6 pb-8 pt-2 shadow-panel"
           >
             <nav aria-label="Main">
               <ul className="flex flex-col">

@@ -2,61 +2,100 @@
 @import "@fontsource-variable/dm-sans";
 
 /* ──────────────────────────────────────────────────────────────
-   Rolvo design tokens.
-   Values taken from the Figma file (J0XK1xzauPMZy56g9jHnD1) and
-   cross-checked against the approved Variation 1 branding board.
-   Divergences from the board are marked CONFLICT.
+   Rolvo design tokens — Figma J0XK1xzauPMZy56g9jHnD1, frame 1:3.
+
+   The page alternates light and dark bands. Every surface colour is a
+   theme token, and `.on-dark` redeclares those same tokens with the
+   dark values, so one set of components renders in either band.
+
+   The tokens are redeclared outright rather than pointed at a second
+   layer of variables: a custom property is substituted where it is
+   declared, so `--color-ink: var(--rv-text)` on :root would resolve
+   once, at :root, and never pick up an override further down.
    ────────────────────────────────────────────────────────────── */
 
 @theme {
-  /* Brand — orange */
-  --color-brand: #ff5a00; /* fills and large display only — 3.0:1 on paper, fails AA as body text */
-  --color-brand-text: #c43a00; /* text-safe orange — 5.1:1 on paper */
-  --color-brand-amber: #ffbb00; /* board accent, unused in this design */
-
-  /* CONFLICT: violet is used throughout the design as a co-primary,
-     but does not appear on the approved Variation 1 board. */
-  --color-violet: #7c5cff;
-
-  /* Neutrals */
+  /* Light band */
+  --color-paper: #faf9f7;
+  --color-card: #ffffff;
+  --color-raise: rgba(17, 17, 17, 0.03);
+  --color-line: #e7e5e1;
+  --color-line-strong: #d9d6d0;
   --color-ink: #111111;
   --color-ink-soft: #4b5563;
-  --color-ink-muted: #6b7280;
-  --color-ink-faint: #9ca3af;
-  --color-paper: #faf9f7;
-  --color-line: #ece9e3;
+  --color-ink-muted: #8a8a86;
+  --color-ink-faint: #8a8a86;
+  --color-eyebrow: #c4460a;
+  --color-ghost: #111111;
 
-  /* Status */
-  --color-state-running: #4f46e5;
-  --color-state-success: #0a7350;
-  --color-state-warning: #8a5a00;
-  --color-state-error: #c81e4e;
+  /* Fixed brand values — identical in both bands */
+  --color-brand: #ff5a00;
+  --color-brand-text: #c4460a; /* text-safe orange on light */
+  --color-brand-soft: rgba(255, 90, 0, 0.15);
+  --color-brand-edge: rgba(255, 90, 0, 0.4);
+
+  /* The design expresses every state as orange vs neutral — there are
+     no green or amber status colours anywhere in frame 1:3. */
+  --color-state-active: #ff5a00;
+  --color-state-idle: #6b7280;
 
   --font-sans: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, "SF Mono", "Liberation Mono", Menlo, monospace;
+
+  --shadow-card: 0 1px 2px rgba(17, 17, 17, 0.04);
+  --shadow-panel: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
-:root {
-  --background: var(--color-paper);
-  --foreground: var(--color-ink);
+/* Dark band */
+.on-dark {
+  --color-paper: #111111;
+  --color-card: #17171a;
+  --color-raise: rgba(255, 255, 255, 0.03);
+  --color-line: rgba(255, 255, 255, 0.1);
+  --color-line-strong: rgba(255, 255, 255, 0.15);
+  --color-ink: #ffffff;
+  --color-ink-soft: #9ca3af;
+  --color-ink-muted: #6b7280;
+  --color-ink-faint: #6b7280;
+  --color-eyebrow: #ff5a00;
+  --color-ghost: rgba(255, 255, 255, 0.25);
+  --shadow-card: 0 0 #0000;
+
+  color-scheme: dark;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-sans);
+  font-variation-settings: "opsz" 14;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Brand gradient used on display type and progress fills */
+/* Hairline grid texture over dark bands (1/64 steps in the design). */
+.grid-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, rgba(255, 255, 255, 0) 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04) 1px, rgba(255, 255, 255, 0) 1px);
+  background-size: 64px 64px;
+}
+
+/* Display accent — orange only; the violet co-primary from the earlier
+   draft does not appear in this design. */
 .brand-gradient-text {
-  background-image: linear-gradient(90deg, var(--color-violet), var(--color-brand));
+  background-image: linear-gradient(90deg, var(--color-brand), #ff9248);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Soft radial glow blobs behind hero content */
 .glow {
   position: absolute;
   border-radius: 9999px;
@@ -82,81 +121,168 @@ body {
 
 .tour-panel { display: none; }
 
-
 #tour-0:checked ~ .tour-body .tour-panel[data-i="0"] { display: block; }
 #tour-0:checked ~ .tour-body .tour-tab[data-i="0"] {
-  background: #fff;
-  border-color: rgba(17, 17, 17, 0.1);
-  box-shadow: 0 4px 24px 0 rgba(17, 17, 17, 0.04);
+  background: var(--rv-card);
+  border-color: var(--rv-border);
 }
-#tour-0:checked ~ .tour-body .tour-tab[data-i="0"] .tour-n { color: var(--color-brand-text); }
-#tour-0:checked ~ .tour-body .tour-tab[data-i="0"] .tour-name { color: var(--color-ink); }
+#tour-0:checked ~ .tour-body .tour-tab[data-i="0"] .tour-n { color: var(--color-brand); }
+#tour-0:checked ~ .tour-body .tour-tab[data-i="0"] .tour-name { color: var(--rv-text); }
 #tour-0:focus-visible ~ .tour-body .tour-tab[data-i="0"] {
-  outline: 2px solid var(--color-violet);
+  outline: 2px solid var(--color-brand);
   outline-offset: 2px;
 }
 
 #tour-1:checked ~ .tour-body .tour-panel[data-i="1"] { display: block; }
 #tour-1:checked ~ .tour-body .tour-tab[data-i="1"] {
-  background: #fff;
-  border-color: rgba(17, 17, 17, 0.1);
-  box-shadow: 0 4px 24px 0 rgba(17, 17, 17, 0.04);
+  background: var(--rv-card);
+  border-color: var(--rv-border);
 }
-#tour-1:checked ~ .tour-body .tour-tab[data-i="1"] .tour-n { color: var(--color-brand-text); }
-#tour-1:checked ~ .tour-body .tour-tab[data-i="1"] .tour-name { color: var(--color-ink); }
+#tour-1:checked ~ .tour-body .tour-tab[data-i="1"] .tour-n { color: var(--color-brand); }
+#tour-1:checked ~ .tour-body .tour-tab[data-i="1"] .tour-name { color: var(--rv-text); }
 #tour-1:focus-visible ~ .tour-body .tour-tab[data-i="1"] {
-  outline: 2px solid var(--color-violet);
+  outline: 2px solid var(--color-brand);
   outline-offset: 2px;
 }
 
 #tour-2:checked ~ .tour-body .tour-panel[data-i="2"] { display: block; }
 #tour-2:checked ~ .tour-body .tour-tab[data-i="2"] {
-  background: #fff;
-  border-color: rgba(17, 17, 17, 0.1);
-  box-shadow: 0 4px 24px 0 rgba(17, 17, 17, 0.04);
+  background: var(--rv-card);
+  border-color: var(--rv-border);
 }
-#tour-2:checked ~ .tour-body .tour-tab[data-i="2"] .tour-n { color: var(--color-brand-text); }
-#tour-2:checked ~ .tour-body .tour-tab[data-i="2"] .tour-name { color: var(--color-ink); }
+#tour-2:checked ~ .tour-body .tour-tab[data-i="2"] .tour-n { color: var(--color-brand); }
+#tour-2:checked ~ .tour-body .tour-tab[data-i="2"] .tour-name { color: var(--rv-text); }
 #tour-2:focus-visible ~ .tour-body .tour-tab[data-i="2"] {
-  outline: 2px solid var(--color-violet);
+  outline: 2px solid var(--color-brand);
   outline-offset: 2px;
 }
 
 #tour-3:checked ~ .tour-body .tour-panel[data-i="3"] { display: block; }
 #tour-3:checked ~ .tour-body .tour-tab[data-i="3"] {
-  background: #fff;
-  border-color: rgba(17, 17, 17, 0.1);
-  box-shadow: 0 4px 24px 0 rgba(17, 17, 17, 0.04);
+  background: var(--rv-card);
+  border-color: var(--rv-border);
 }
-#tour-3:checked ~ .tour-body .tour-tab[data-i="3"] .tour-n { color: var(--color-brand-text); }
-#tour-3:checked ~ .tour-body .tour-tab[data-i="3"] .tour-name { color: var(--color-ink); }
+#tour-3:checked ~ .tour-body .tour-tab[data-i="3"] .tour-n { color: var(--color-brand); }
+#tour-3:checked ~ .tour-body .tour-tab[data-i="3"] .tour-name { color: var(--rv-text); }
 #tour-3:focus-visible ~ .tour-body .tour-tab[data-i="3"] {
-  outline: 2px solid var(--color-violet);
+  outline: 2px solid var(--color-brand);
   outline-offset: 2px;
 }
 
 #tour-4:checked ~ .tour-body .tour-panel[data-i="4"] { display: block; }
 #tour-4:checked ~ .tour-body .tour-tab[data-i="4"] {
-  background: #fff;
-  border-color: rgba(17, 17, 17, 0.1);
-  box-shadow: 0 4px 24px 0 rgba(17, 17, 17, 0.04);
+  background: var(--rv-card);
+  border-color: var(--rv-border);
 }
-#tour-4:checked ~ .tour-body .tour-tab[data-i="4"] .tour-n { color: var(--color-brand-text); }
-#tour-4:checked ~ .tour-body .tour-tab[data-i="4"] .tour-name { color: var(--color-ink); }
+#tour-4:checked ~ .tour-body .tour-tab[data-i="4"] .tour-n { color: var(--color-brand); }
+#tour-4:checked ~ .tour-body .tour-tab[data-i="4"] .tour-name { color: var(--rv-text); }
 #tour-4:focus-visible ~ .tour-body .tour-tab[data-i="4"] {
-  outline: 2px solid var(--color-violet);
+  outline: 2px solid var(--color-brand);
   outline-offset: 2px;
 }
 
 #tour-5:checked ~ .tour-body .tour-panel[data-i="5"] { display: block; }
 #tour-5:checked ~ .tour-body .tour-tab[data-i="5"] {
-  background: #fff;
-  border-color: rgba(17, 17, 17, 0.1);
-  box-shadow: 0 4px 24px 0 rgba(17, 17, 17, 0.04);
+  background: var(--rv-card);
+  border-color: var(--rv-border);
 }
-#tour-5:checked ~ .tour-body .tour-tab[data-i="5"] .tour-n { color: var(--color-brand-text); }
-#tour-5:checked ~ .tour-body .tour-tab[data-i="5"] .tour-name { color: var(--color-ink); }
+#tour-5:checked ~ .tour-body .tour-tab[data-i="5"] .tour-n { color: var(--color-brand); }
+#tour-5:checked ~ .tour-body .tour-tab[data-i="5"] .tour-name { color: var(--rv-text); }
 #tour-5:focus-visible ~ .tour-body .tour-tab[data-i="5"] {
-  outline: 2px solid var(--color-violet);
+  outline: 2px solid var(--color-brand);
   outline-offset: 2px;
 }
+
+/* ──────────────────────────────────────────────────────────────
+   Motion. Everything here is additive: with JavaScript off the `js`
+   class is never set, nothing is hidden, and the page reads as static
+   markup. Every transition is disabled under prefers-reduced-motion.
+   ────────────────────────────────────────────────────────────── */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.js .reveal.in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Buttons and cards — press and hover feedback */
+.btn-press {
+  transition:
+    transform 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 160ms ease,
+    border-color 160ms ease,
+    opacity 160ms ease;
+}
+.btn-press:hover { transform: translateY(-1px); }
+.btn-press:active { transform: translateY(0); }
+
+.card-hover {
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 240ms ease,
+    background-color 240ms ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-brand-edge);
+}
+
+/* Arrow that slides on hover of its parent link */
+.arrow-slide { transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1); }
+.group:hover .arrow-slide { transform: translateX(3px); }
+.group:hover .arrow-slide-y { transform: translateY(3px); }
+
+/* Scroll cue */
+@keyframes cue-bob {
+  0%, 100% { transform: translateY(0); opacity: 0.75; }
+  50% { transform: translateY(4px); opacity: 1; }
+}
+.scroll-cue { animation: cue-bob 2.2s ease-in-out infinite; }
+
+/* Pipeline stage rail fill */
+.stage-rail-fill {
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: top;
+}
+
+/* Explorer panel swap */
+.stage-pane {
+  transition:
+    opacity 320ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:where(a, button, input, label, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal,
+  .js .reveal.in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .btn-press,
+  .card-hover,
+  .arrow-slide,
+  .stage-rail-fill,
+  .stage-pane {
+    transition: none;
+  }
+  .btn-press:hover,
+  .card-hover:hover { transform: none; }
+  .scroll-cue { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+html { scroll-behavior: smooth; }

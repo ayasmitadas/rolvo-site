@@ -1,83 +1,35 @@
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import Eyebrow from "../Eyebrow";
+import Reveal from "../motion/Reveal";
 
-const ROWS = [
-  ["Agent Type", "Autonomous agents", "Delivery specialists"],
-  ["Primary Use", "Business tasks", "Salesforce development"],
-  ["Output", "Actions & responses", "Deployable metadata"],
-  ["Traceability", "Conversation logs", "Full audit trail"],
-];
+/* The Agentforce comparison table was removed at the client's request.
+   Its data still lives in git history if it comes back. */
 
 export default function Differentiation() {
   return (
-    <section
-      data-node-id="5:2620"
-      className="border-b border-line bg-paper py-16 lg:py-24"
-    >
-      <div className="mx-auto grid w-full max-w-[1440px] gap-12 px-6 md:px-12 lg:grid-cols-12">
-        <div className="flex min-w-0 flex-col gap-4 lg:col-span-4">
+    <section className="border-b border-line bg-paper py-20 lg:py-28">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-6 md:px-12">
+        <Reveal className="flex max-w-[768px] flex-col gap-4">
           <Eyebrow>Built for a different job</Eyebrow>
-          <h2 className="text-[28px] font-bold leading-[1.15] text-ink sm:text-[36px] sm:leading-[40px]">
-            Agentforce powers business agents. Rolvo delivers Salesforce change.
+          <h2 className="text-[32px] font-extrabold leading-[1.06] tracking-[-0.8px] text-ink sm:text-[42px] lg:text-[52px] lg:leading-[53px] lg:tracking-[-1.3px]">
+            Your Salesforce delivery team. Now in software.
           </h2>
-          <p className="pt-2 text-[16px] leading-[26px] text-ink-soft">
-            Salesforce Agentforce is built for autonomous agents that run
-            business tasks. Rolvo is built for delivery specialists that produce
-            deployable Salesforce metadata — Apex, LWC, Flows and configurations
-            — with full traceability.
+        </Reveal>
+        <Reveal delay={90} className="flex max-w-[640px] flex-col items-start gap-6">
+          <p className="text-[18px] leading-[29.25px] text-ink-soft">
+            Agentforce runs business tasks. Rolvo delivers Salesforce change:
+            Apex, LWC, Flows and configuration, with a full audit trail and a
+            reviewed package at the end.
           </p>
-        </div>
-
-        <div className="min-w-0 lg:col-span-8">
-          <div className="overflow-hidden rounded-[8px] border border-ink/[0.06] bg-white/70 shadow-[0_4px_24px_0_rgba(17,17,17,0.04)] backdrop-blur-[10px]">
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[640px] border-collapse text-left">
-                <thead className="bg-black/[0.03]">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="w-[24%] p-6 text-[11px] font-bold uppercase tracking-[1.1px] text-ink-muted"
-                    >
-                      Capability
-                    </th>
-                    <th
-                      scope="col"
-                      className="w-[38%] p-6 text-[11px] font-bold uppercase tracking-[1.1px] text-ink-muted"
-                    >
-                      Salesforce Agentforce
-                    </th>
-                    <th
-                      scope="col"
-                      className="w-[38%] p-6 text-[11px] font-bold uppercase tracking-[1.1px] text-brand-text"
-                    >
-                      Rolvo
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {ROWS.map(([capability, agentforce, rolvo], i) => (
-                    <tr
-                      key={capability}
-                      className={i === 0 ? "" : "border-t border-line"}
-                    >
-                      <th
-                        scope="row"
-                        className="p-6 text-[16px] font-medium text-ink"
-                      >
-                        {capability}
-                      </th>
-                      <td className="p-6 text-[16px] text-ink-muted">
-                        {agentforce}
-                      </td>
-                      <td className="p-6 text-[16px] font-medium text-ink">
-                        {rolvo}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+          <Link
+            href="#how-it-works"
+            className="group btn-press inline-flex items-center gap-2 rounded-[6px] border border-ghost px-7 py-[13px] text-[15px] font-bold leading-[22.5px] text-ink hover:bg-raise"
+          >
+            Explore the product
+            <ArrowUpRight size={15} strokeWidth={2} aria-hidden className="arrow-slide" />
+          </Link>
+        </Reveal>
       </div>
     </section>
   );
